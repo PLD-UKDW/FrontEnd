@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+@import "tailwindcss";
+@tailwind utilities;
+
+@layer utilities {
+    .font-poppins {
+        font-family: "Poppins", sans-serif;
+    }
+    .text-primary {
+        color: #f3f3f1;
+    }
+    .text-secondary {
+        color: #09d184;
+    }
+    .text-light {
+        color: #f7f7f7;
+    }
+    .text-dark {
+        color: #333333;
+    }
+    .text-dark2 {
+        color: #999999;
+    }
+
+    .bg-primary {
+        background-color: #f3f3f1;
+    }
+    .bg-secondary {
+        background-color: #69a79c;
+    }
+    .bg-light {
+        background-color: #f7f7f7;
+    }
+    .bg-dark {
+        background-color: #333333;
+    }
+    .bg-dark2 {
+        background-color: #999999;
+    }
+     /* Custom Container Padding */
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    @media (min-width: 640px) {
+        .container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .container {
+        padding-left: 4rem;
+        padding-right: 4rem;
+        }
+    }
+
+    @media (min-width: 1280px) {
+        .container {
+        padding-left: 5rem;
+        padding-right: 5rem;
+        }
+    }
+
+    @media (min-width: 1536px) {
+        .container {
+        padding-left: 6rem;
+        padding-right: 6rem;
+        }
+    }
+}
