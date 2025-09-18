@@ -41,17 +41,15 @@ export default function SejarahPage() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-20">
         {/* Header Section */}
-        <div className="text-center mb-20">
-
-          <h1 className="text-4xl md:text-6xl font-extrabold text-[#0e284d] tracking-tight leading-tight mb-6">
-            Sejarah <span className="text-[#3E7B27]">ULD UKDW</span>
+        <div className="max-w-6xl text-center mb-16">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#3e4095] tracking-tight leading-tight mb-1">
+            Sejarah <span className="text-[#02a502]">ULD UKDW</span>
           </h1>
-
-          <div className="w-28 h-1 bg-gradient-to-r from-[#3E7B27] to-blue-500 mx-auto"></div>
+          <div className="w-28 h-1 bg-gradient-to-r from-[#02a502] to-[#3e4095] mx-auto"></div>
         </div>
 
         {/* Atas: Gambar & Deskripsi */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20 -mt-7">
           {/* Left Section - Images */}
           <div className="relative group">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-white p-4 transform group-hover:scale-[1.02] transition-all duration-500">
@@ -92,7 +90,7 @@ export default function SejarahPage() {
 
           {/* Right Section - Content */}
           <div className="space-y-8">
-            <h2 className="text-3xl lg:text-4xl font-bold text-[#0e284d] mb-6 leading-snug">
+            <h2 className="text-2xl lg:text-3xl font-bold text-[#3e4095] mb-6 leading-snug">
               Perjalanan Menuju Kampus Inklusif
             </h2>
 
@@ -113,11 +111,11 @@ export default function SejarahPage() {
                 komitmen untuk keunggulan dalam pelayanan.
               </p>
 
-              <div className="bg-gradient-to-r from-[#3E7B27]/5 to-blue-50 rounded-2xl p-6 border-l-4 border-[#3E7B27]">
-                <p className="text-[#0e284d] font-medium italic">
-                  "Sejarah kami adalah fondasi masa depan, menginspirasi kami
+              <div className="bg-gradient-to-r from-[#3E7B27]/5 to-blue-50 rounded-2xl p-6 border-l-4 border-[#02a502]">
+                <p className="text-[#000000] font-medium italic">
+                  &quot;Sejarah kami adalah fondasi masa depan, menginspirasi kami
                   untuk terus meningkatkan kualitas layanan dan menciptakan
-                  dampak positif bagi komunitas kampus."
+                  dampak positif bagi komunitas kampus.&quot;
                 </p>
               </div>
             </div>
@@ -126,7 +124,7 @@ export default function SejarahPage() {
 
         {/* Bawah: Tonggak */}
         <div className="mt-20">
-          <h3 className="text-2xl font-bold text-[#0e284d] mb-10 text-center">
+          <h3 className="text-2xl font-bold text-[#3e4095] mb-10 text-center">
             Tonggak Perjalanan Kami
           </h3>
 
@@ -145,7 +143,7 @@ export default function SejarahPage() {
 
                 {/* Content */}
                 <div className="flex-1 min-w-0">
-                  <h4 className="text-lg font-semibold text-[#0e284d] mb-1 group-hover:text-[#3E7B27] transition-colors duration-300">
+                  <h4 className="text-lg font-semibold text-[#3e4095] mb-1 group-hover:text-[#02a502] transition-colors duration-300">
                     {item.title}
                   </h4>
                   <p className="text-gray-600 leading-relaxed text-sm md:text-base">
@@ -155,7 +153,7 @@ export default function SejarahPage() {
 
                 {/* Checkmark */}
                 <div className="flex-shrink-0">
-                  <CheckCircle2 className="w-6 h-6 text-green-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <CheckCircle2 className="w-6 h-6 text-[#02a502] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
               </div>
             ))}

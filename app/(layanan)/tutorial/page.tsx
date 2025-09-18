@@ -46,22 +46,22 @@ export default function TutorialPage() {
   ];
 
   return (
-    <section className="relative w-full min-h-screen bg-gradient-to-br from-green-900 via-green-800 to-green-700 text-white pt-32 pb-20 px-6 md:px-16 lg:px-24">
+    <section className="relative w-full min-h-screen bg-gradient-to-br from-green-900 via-emerald-900 to-green-800 text-white pt-32 pb-20 px-6 md:px-16 lg:px-24">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
         {/* Left Content */}
         <div className="lg:col-span-2 space-y-10">
           <div>
-            <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-4 text-[#A9C46C]">
+            <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-4 text-white">
               Tutorial
             </h1>
-            <p className="text-lg md:text-xl text-gray-200 leading-relaxed mb-6">
+            <p className="text-lg md:text-xl text-white leading-relaxed mb-6">
               Tutorial adalah bentuk pembelajaran intensif yang diberikan untuk
               mendukung mahasiswa penyandang disabilitas dalam memahami materi
               kuliah maupun persiapan akademik lainnya. Jenis tutorial meliputi
               bimbingan skripsi/TA, tutorial bahasa (Indonesia/Inggris), hingga
               pendampingan mata kuliah tertentu.
             </p>
-            <p className="text-base md:text-lg text-gray-300 leading-relaxed">
+            <p className="text-base md:text-lg text-white leading-relaxed">
               Pengajuan tutorial dapat dilakukan sepanjang semester, sedangkan
               tutorial skripsi/TA/Laporan Magang dianjurkan diajukan sejak awal
               semester agar lebih mudah dijadwalkan.
@@ -70,7 +70,7 @@ export default function TutorialPage() {
 
           {/* Prosedur */}
           <div>
-            <h2 className="text-2xl font-bold mb-6 text-[#A9C46C]">
+            <h2 className="text-2xl font-bold mb-6 text-white">
               Prosedur Pengajuan
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -80,12 +80,12 @@ export default function TutorialPage() {
                   className="bg-white/10 backdrop-blur-md rounded-xl p-6 shadow-lg border border-white/20"
                 >
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#A9C46C] text-green-900 font-bold text-xl">
+                    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#A9C46C] text-white font-bold text-xl">
                       {item.step}
                     </div>
                     <h3 className="text-lg font-semibold">{item.title}</h3>
                   </div>
-                  <p className="text-sm text-gray-300">{item.desc}</p>
+                  <p className="text-sm text-white">{item.desc}</p>
                 </div>
               ))}
             </div>

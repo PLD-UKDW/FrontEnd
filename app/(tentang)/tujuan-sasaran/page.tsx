@@ -44,33 +44,33 @@ export default function TujuanSasaranPage() {
       <div className="max-w-4xl mx-auto">
         
         {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Tujuan & Sasaran
+        <div className="text-center mb-16 -mt-8">
+            <h1 className="text-4xl  text-[#3e4095] md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight tracking-tight">
+            Tujuan <span className="text-[#02a502]">& </span>Sasaran
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Komitmen ULD UKDW dalam menciptakan lingkungan pendidikan yang inklusif 
+          <p className="text-lg text-gray-700 mx-auto leading-relaxed space-y-6">
+            Komitmen ULD UKDW dalam menciptakan lingkungan pendidikan yang inklusif
             dan memberdayakan setiap mahasiswa
           </p>
         </div>
 
         {/* Tujuan Section */}
-        <section className="mb-16">
+        <section className="mb-10 -mt-10">
           <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
             <div className="flex items-center gap-3 mb-8">
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                <Target className="w-6 h-6 text-blue-600" />
+                <Target className="w-6 h-6 text-[#3e4095]" />
               </div>
-              <h2 className="text-3xl font-bold text-gray-900">Tujuan</h2>
+              <h2 className="text-3xl font-bold text-[#3e4095]">Tujuan</h2>
             </div>
             
             <div className="space-y-4">
               {tujuanList.map((tujuan, index) => (
                 <div key={index} className="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-50 transition-colors">
-                  <div className="flex-shrink-0 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mt-1">
+                  <div className="flex-shrink-0 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center -mt-1">
                     <span className="text-green-600 font-bold text-sm">{index + 1}</span>
                   </div>
-                  <p className="text-gray-700 text-lg leading-relaxed">{tujuan}</p>
+                  <p className="text-gray-700 space-y-6 leading-relaxed">{tujuan}</p>
                 </div>
               ))}
             </div>
@@ -82,9 +82,9 @@ export default function TujuanSasaranPage() {
           <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
             <div className="flex items-center gap-3 mb-8">
               <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                <Heart className="w-6 h-6 text-green-600" />
+                <Heart className="w-6 h-6 text-[#008000]" />
               </div>
-              <h2 className="text-3xl font-bold text-gray-900">Sasaran</h2>
+              <h2 className="text-3xl font-bold text-[#3e4095]">Sasaran</h2>
             </div>
 
             <div className="grid gap-8 md:gap-12">
@@ -99,7 +99,7 @@ export default function TujuanSasaranPage() {
                     {sasaran.daftar.map((item, itemIndex) => (
                       <li key={itemIndex} className="flex items-start gap-3">
                         <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
-                        <span className="text-gray-700 leading-relaxed">{item}</span>
+                        <span className="text-gray-700 space-y-6 leading-relaxed">{item}</span>
                       </li>
                     ))}
                   </ul>

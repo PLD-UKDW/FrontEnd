@@ -3,7 +3,7 @@ import { Facebook, Youtube, Instagram, Linkedin, Twitter, Mail, Phone, MessageCi
 
 export default function Footer() {
   return (
-    <footer className="bg-[#3E7B27] text-gray-200 py-10 md:py-14">
+    <footer className="bg-[#02a502] text-gray-200 py-10 md:py-14">
       <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         
         {/* Kontak Kami */}
