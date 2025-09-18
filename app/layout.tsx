@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Inter } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import AppShell from "@/components/layouts/AppShell";
 
-const fontBebasNeue = Bebas_Neue({
-  variable: "--font-bebas-neue",
+const fontMontserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
-  weight: "400"
-});
-
-const fontInter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -25,10 +20,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${fontBebasNeue.variable} ${fontInter.variable} antialiased`}>
-        <AppShell >{children}</AppShell>
+    <html lang="en" className="hydrated">
+      <body className={`${fontMontserrat.className} antialiased`}>
+        <AppShell>{children}</AppShell>
       </body>
     </html>
+
   );
 }

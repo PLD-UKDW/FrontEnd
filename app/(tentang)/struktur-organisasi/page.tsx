@@ -14,7 +14,7 @@ const struktur = [
   {
     nama: "Stefani Natalia Sabatini, S.T., M.T.",
     jabatan: "Wakil Koordinator ULD",
-    email: "sulis@contoh.ac.id", 
+    email: "sulis@contoh.ac.id",
     foto: "/dummy/person2.jpg",
     role: "deputy",
     description: "Mendukung koordinator dalam menjalankan program-program layanan disabilitas"
@@ -23,7 +23,7 @@ const struktur = [
 
 export default function StrukturOrganisasiPage() {
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-[#0B2E22] via-[#144D36] to-[#0B2E22] text-white overflow-hidden">
+    <section className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 py-20 px-6 md:px-16 overflow-hidden pt-30">
       
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -35,17 +35,16 @@ export default function StrukturOrganisasiPage() {
       <div className="relative z-10 py-20 px-6 md:px-16">
         
         {/* Header Section */}
-        <div className="max-w-6xl mx-auto text-center mb-20">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight">
+        <div className="max-w-6xl mx-auto text-center mb-16 -mt-30">
+          <h1 className="text-4xl  text-[#3e4095] md:text-5xl lg:text-6xl font-extrabold mb-1 leading-tight tracking-tight">
             Struktur{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-lime-400">
+            <span className="text-[#02a502]">
               Organisasi
             </span>
           </h1>
+          <div className="w-28 h-1 bg-gradient-to-r from-[#02a502] to-[#3e4095] mx-auto mb-8"></div>
           
-          <div className="w-24 h-1 bg-gradient-to-r from-green-400 to-lime-400 mx-auto mb-8"></div>
-          
-          <p className="text-xl md:text-2xl text-green-100 max-w-4xl mx-auto leading-relaxed font-light">
+          <p className="text-lg md:text-xl text-gray-700 mx-auto leading-relaxed space-y-6">
             Tim berpengalaman yang berdedikasi untuk menciptakan lingkungan kampus yang inklusif dan mendukung mahasiswa berkebutuhan khusus
           </p>
         </div>
@@ -67,10 +66,11 @@ export default function StrukturOrganisasiPage() {
                 )}
 
                 {/* Card */}
-                <div className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 shadow-2xl hover:shadow-3xl transform hover:scale-105 hover:-translate-y-2 transition-all duration-500 group-hover:bg-white/15">
+                {/* <div className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 shadow-2xl hover:shadow-3xl transform hover:scale-105 hover:-translate-y-2 transition-all duration-500 group-hover:bg-white/15"> */}
+                <div className="relative bg-gradient-to-tr from-[#3e4095]/20 to-lime-500/20 backdrop-blur-md border border-white/20 rounded-3xl p-8 shadow-2xl hover:shadow-3xl transform hover:scale-105 hover:-translate-y-2 transition-all duration-500 group-hover:bg-white/15">
                   
                   {/* Decorative corner */}
-                  <div className="absolute top-6 right-6 w-8 h-8 border-t-2 border-r-2 border-green-400/50 rounded-tr-2xl"></div>
+                  <div className="absolute top-6 right-6 w-8 h-8 border-t-2 border-r-2 border-[#3e4095] rounded-tr-2xl"></div>
                   
                   {/* Profile Image */}
                   <div className="relative mb-8">
@@ -94,16 +94,16 @@ export default function StrukturOrganisasiPage() {
 
                   {/* Content */}
                   <div className="text-center space-y-4">
-                    <h3 className="text-2xl font-bold text-white group-hover:text-green-300 transition-colors duration-300">
+                    <h3 className="text-2xl font-bold text-[#3e4095] group-hover:text-[#02a502] transition-colors duration-300">
                       {item.nama}
                     </h3>
                     
                     <div className="space-y-3">
-                      <p className="text-lg font-semibold text-green-300">
+                      <p className="text-lg font-semibold text-[#3e4095]">
                         {item.jabatan}
                       </p>
                       
-                      <p className="text-sm text-green-100/80 leading-relaxed px-4">
+                      <p className="text-sm text-[#3e4095] leading-relaxed px-4">
                         {item.description}
                       </p>
                     </div>
@@ -112,7 +112,7 @@ export default function StrukturOrganisasiPage() {
                     <div className="pt-6 border-t border-white/20">
                       <a
                         href={`mailto:${item.email}`}
-                        className="group/email inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-green-500/20 to-lime-500/20 border border-green-400/30 rounded-xl text-green-200 hover:text-white hover:bg-gradient-to-r hover:from-green-500/40 hover:to-lime-500/40 transition-all duration-300 backdrop-blur-sm"
+                        className="group/email inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[#3e4095]/20 to-lime-500/20 border border-green-400/30 rounded-xl text-[#3e4095] hover:text-white hover:bg-gradient-to-r hover:from-green-500/40 hover:to-lime-500/40 transition-all duration-300 backdrop-blur-sm"
                       >
                         <Mail className="w-5 h-5 group-hover/email:rotate-12 transition-transform duration-300" />
                         <span className="text-sm font-medium">Kirim Email</span>

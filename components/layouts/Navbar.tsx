@@ -289,19 +289,20 @@ export function NavigationMenuDemo() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-[#008000] shadow z-50">
+    <nav className="fixed top-0 left-0 w-full bg-[#02a502] shadow z-50 font-sans">
       <div className="flex items-center justify-between px-6 py-4">
         {/* Kiri - Logo + Nama Kampus */}
         <Link href="/" className="flex items-center gap-2">
-          <Image src="/logo.png" alt="Logo UKDW" width={40} height={40} className="h-auto w-auto scale-150 object-contain" />
-          <div className="flex flex-col leading-tight text-white">
-            <span className="text-sm font-semibold ">U</span>
-            <span className="text-sm font-semibold">Duta Wacana</span>
+          <Image src="/logould.png" alt="Logo ULD" width={32} height={32} className="h-auto w-auto scale-150 object-contain" />
+          {/* <Image src="/logo.png" alt="Logo UKDW" width={40} height={40} className="h-auto w-auto scale-150 object-contain" /> */}
+          <div className="flex flex-col leading-tight text-white font-sans px-2">
+            <span className="text-sm font-semibold">ULD</span>
+            <span className="text-sm font-semibold">UKDW</span>
           </div>
         </Link>
 
         {/* Hamburger Button */}
-        <button className="md:hidden flex items-center text-white" onClick={() => setMobileOpen((v) => !v)} aria-label="Toggle menu">
+        <button className="md:hidden flex items-center font-sans text-white" onClick={() => setMobileOpen((v) => !v)} aria-label="Toggle menu">
           {mobileOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
 
@@ -316,7 +317,7 @@ export function NavigationMenuDemo() {
                     {componentsTentang.map((c) => (
                       <li key={c.title}>
                         <NavigationMenuLink asChild>
-                          <Link href={c.href} className="block rounded-lg px-3 py-2 text-sm font-medium text-gray-800 hover:bg-green-50 hover:text-green-700 transition-colors duration-200">
+                          <Link href={c.href} className="block rounded-lg px-3 py-2 text-sm font-medium font-sans text-gray-800 hover:bg-green-50 hover:text-green-700 transition-colors duration-200">
                             {c.title}
                           </Link>
                         </NavigationMenuLink>

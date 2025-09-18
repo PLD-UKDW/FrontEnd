@@ -99,10 +99,16 @@ export default function Hero() {
   return (
     <section
       className="relative w-full min-h-screen flex flex-col-reverse md:flex-row items-center justify-between
-                bg-gradient-to-br from-[#43c458] via-[#36a348] to-[#2d8a3a]
+                bg-gradient-to-br from-[#43c458] via-[#049f04] to-[#2d8a3a]
                 px-0 py-0 overflow-hidden"
       style={{ width: "100vw", marginLeft: "calc(-1 * (100vw - 100%)/2)" }}
     >
+    {/* <section
+      className="relative w-full min-h-screen flex flex-col-reverse md:flex-row items-center justify-between
+                bg-gradient-to-br from-[#43c458] via-[#36a348] to-[#2d8a3a]
+                px-0 py-0 overflow-hidden"
+      style={{ width: "100vw", marginLeft: "calc(-1 * (100vw - 100%)/2)" }}
+    > */}
       {/* Simple Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Subtle Gradient Orbs */}
@@ -120,7 +126,7 @@ export default function Hero() {
                     bg-gradient-to-r from-white to-green-100 bg-clip-text text-transparent
                     drop-shadow-lg"
         >
-          Unit Layanan Disabilitas 
+          Unit Layanan Disabilitas
         </h1>
 
         <p className="text-lg md:text-xl mb-8 text-green-50/90 leading-relaxed">Mari bersama membangun lingkungan belajar yang ramah, setara, dan inklusif di UKDW</p>
