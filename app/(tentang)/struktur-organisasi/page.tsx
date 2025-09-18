@@ -4,7 +4,7 @@ import { Mail, Award } from "lucide-react";
 
 const struktur = [
   {
-    nama: "Lukas Chrisantyo A A., S.Kom., M.Eng.",
+    nama: "Stefani Natalia Sabatini, S.T., M.T.",
     jabatan: "Ketua Koordinator ULD",
     email: "LukasCrisantyo@staff.ukdw.ac.id",
     foto: "/dummy/person1.jpg",
@@ -12,7 +12,7 @@ const struktur = [
     description: "Memimpin dan mengkoordinasikan seluruh kegiatan ULD untuk menciptakan lingkungan kampus yang inklusif"
   },
   {
-    nama: "Stefani Natalia Sabatini, S.T., M.T.",
+    nama: "Lukas Chrisantyo A A., S.Kom., M.Eng.",
     jabatan: "Wakil Koordinator ULD",
     email: "sulis@contoh.ac.id",
     foto: "/dummy/person2.jpg",
