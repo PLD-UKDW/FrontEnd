@@ -92,8 +92,8 @@
 // }
 
 "use client";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -154,7 +154,7 @@ export default function Hero() {
 
         <div className="flex justify-center">
           <Link
-            href="/statistics"
+            href="/statistik-mahasiswa"
             className="group relative rounded-2xl bg-gradient-to-r from-white to-green-50 
                         px-8 py-4 text-base font-bold text-[#008000] shadow-2xl 
                         hover:shadow-white/20 hover:scale-105 transition-all duration-300 w-max overflow-hidden"

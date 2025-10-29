@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function UnderDevelopment() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6">
+    <section className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 flex items-center justify-center px-6">
       {/* Background Accent */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-10 w-40 h-40 bg-green-400/10 rounded-full blur-3xl"></div>
