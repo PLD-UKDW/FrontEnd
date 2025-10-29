@@ -1,10 +1,9 @@
 "use client";
-
 import Image from "next/image";
 
 export default function UnderDevelopment() {
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 flex items-center justify-center px-6">
+    <section className="relative min-h-screen flex items-center justify-center px-6">
       {/* Background Accent */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-10 w-40 h-40 bg-green-400/10 rounded-full blur-3xl"></div>
@@ -13,8 +12,16 @@ export default function UnderDevelopment() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center">
-        <Image src="/maintenance.png" alt="Logo ULD" width={500} height={500} className="h-auto w-auto scale-100 object-contain" />
+      <div className="relative z-10 flex flex-col items-center justify-center text-center max-w-2xl mx-auto">
+        <div className="mb-8">
+          <Image 
+            src="/maintenance.jpg" 
+            alt="Logo ULD" 
+            width={400} 
+            height={400} 
+            className="mx-auto" 
+          />
+        </div>
         <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#3e4095]">
           This <span className="text-[#02a502]">Page</span> is Under Development
         </h1>

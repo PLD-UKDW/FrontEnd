@@ -138,7 +138,7 @@ export default function Hero() {
                         flex flex-col items-center hover:border-lime-300/50 hover:bg-white/25 
                         transition-all duration-300 group"
           >
-            <span className="block text-4xl font-bold text-[#d4ff00] group-hover:text-lime-200 transition-colors">50</span>
+            <span className="block text-4xl font-bold text-[#d4ff00] group-hover:text-lime-200 transition-colors">4</span>
             <p className="mt-2 text-sm text-green-100">Active Students</p>
           </div>
           <div
@@ -147,7 +147,7 @@ export default function Hero() {
                         flex flex-col items-center hover:border-lime-300/50 hover:bg-white/25 
                         transition-all duration-300 group"
           >
-            <span className="block text-4xl font-bold text-[#d4ff00] group-hover:text-lime-200 transition-colors">25</span>
+            <span className="block text-4xl font-bold text-[#d4ff00] group-hover:text-lime-200 transition-colors">3</span>
             <p className="mt-2 text-sm text-green-100">Graduates</p>
           </div>
         </div>

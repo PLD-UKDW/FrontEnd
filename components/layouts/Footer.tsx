@@ -17,8 +17,8 @@ export default function Footer() {
           </p>
           <p className="mb-4">
             <span className="font-semibold">Email:</span>{" "}
-            <a href="mailto:ulddutawaca@ukdw.ac.id" className="text-[#4ADE80] hover:underline">
-              ulddutawaca@ukdw.ac.id
+            <a href="mailto:ulddutawacana@ukdw.ac.id" className="text-[#4ADE80] hover:underline">
+              ulddutawacana@ukdw.ac.id
             </a>
           </p>
           <p className="font-semibold mb-2">Sosial Media Kami</p>
