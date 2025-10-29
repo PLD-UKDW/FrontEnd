@@ -307,12 +307,12 @@ export function NavigationMenuDemo() {
         </Link>
 
         {/* Hamburger Button */}
-        <button className="md:hidden flex items-center font-sans text-white" onClick={() => setMobileOpen((v) => !v)} aria-label="Toggle menu">
+        <button className="min-[975px]:hidden flex items-center font-sans text-white" onClick={() => setMobileOpen((v) => !v)} aria-label="Toggle menu">
           {mobileOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex flex-1 justify-center">
+        <div className="hidden min-[975px]:flex flex-1 justify-center">
           <NavigationMenu viewport={false} className="flex justify-center">
             <NavigationMenuList>
               <NavigationMenuItem>
@@ -421,7 +421,7 @@ export function NavigationMenuDemo() {
             </NavigationMenuList>
           </NavigationMenu>
         </div>
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden min-[975px]:flex items-center gap-4">
           <Link href="/login" className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-[#008000] shadow hover:bg-gray-100 transition">
             Login
           </Link>
