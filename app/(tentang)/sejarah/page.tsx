@@ -55,7 +55,7 @@ export default function SejarahPage() {
             <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-white p-4 transform group-hover:scale-[1.02] transition-all duration-500">
               <div className="rounded-2xl overflow-hidden">
                 <Image
-                  src="/berita/1.jpeg"
+                  src="/sejarah.jpg"
                   alt="Fasilitas ULD UKDW yang mendukung aksesibilitas mahasiswa berkebutuhan khusus"
                   width={600}
                   height={400}
