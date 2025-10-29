@@ -207,12 +207,12 @@ const componentsProsedur: { title: string; href: string }[] = [
     href: "/sop-pmjd",
   },
   {
-    title: "SOP pendampingan",
+    title: "SOP Pendampingan",
     href: "/sop-pendampingan",
   },
   {
     title: "SOP Rekrutmen & Pelatihan Pendamping",
-    href: "/sop-rekrutmen-pelatihan",
+    href: "/sop-rekrutmen",
   },
   {
     title: "SOP Layak Etik",
@@ -267,10 +267,10 @@ const componentsBerita: { title: string; href: string }[] = [
 ];
 
 const componentsPMJD: { title: string; href: string }[] = [
-  {
-    title: "Registrasi",
-    href: "/registrasi",
-  },
+  // {
+  //   title: "Registrasi",
+  //   href: "/registrasi",
+  // },
   {
     title: "Digital Literacy Test",
     href: "/digital-literacy-test",
@@ -294,11 +294,11 @@ export function NavigationMenuDemo() {
         {/* Kiri - Logo + Nama Kampus */}
         <Link href="/" className="flex items-center gap-2">
           <Image src="/logould.png" alt="Logo ULD" width={32} height={32} className="h-auto w-auto scale-150 object-contain" />
-          {/* <Image src="/logo.png" alt="Logo UKDW" width={40} height={40} className="h-auto w-auto scale-150 object-contain" /> */}
-          <div className="flex flex-col leading-tight text-white font-sans px-2">
+          {/* <Image src="/loguld.png" alt="Logo UKDW" width={40} height={40} className="h-auto w-auto scale-150 object-contain" /> */}
+          {/* <div className="flex flex-col leading-tight text-white font-sans px-2">
             <span className="text-sm font-semibold">ULD</span>
             <span className="text-sm font-semibold">UKDW</span>
-          </div>
+          </div> */}
         </Link>
 
         {/* Hamburger Button */}

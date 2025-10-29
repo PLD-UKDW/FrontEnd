@@ -21,7 +21,7 @@ export default function DigitalisasiBukuPage() {
   ];
 
   return (
-    <section className="relative w-full min-h-screen bg-gradient-to-br from-green-900 via-emerald-900 to-green-800 text-white pt-32 pb-20 px-6 md:px-16 lg:px-24">
+  <section className="relative w-full min-h-screen bg-gradient-to-br from-[#14532d] via-[#064e3b] to-[#166534] text-white pt-32 pb-20 px-6 md:px-16 lg:px-24">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
         
         {/* Konten utama */}

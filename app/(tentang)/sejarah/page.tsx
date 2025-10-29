@@ -39,13 +39,13 @@ export default function SejarahPage() {
         <div className="absolute top-1/2 right-1/4 w-24 h-24 bg-yellow-200/20 rounded-full blur-2xl"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-25">
         {/* Header Section */}
         <div className="max-w-6xl text-center mb-16">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#3e4095] tracking-tight leading-tight mb-1">
             Sejarah <span className="text-[#02a502]">ULD UKDW</span>
           </h1>
-          <div className="w-28 h-1 bg-gradient-to-r from-[#02a502] to-[#3e4095] mx-auto"></div>
+
         </div>
 
         {/* Atas: Gambar & Deskripsi */}
@@ -81,7 +81,7 @@ export default function SejarahPage() {
                   <Users className="w-6 h-6 text-[#3E7B27]" />
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-[#0e284d]">12K+</div>
+                  <div className="text-2xl font-bold text-[#0e284d]">5+</div>
                   <div className="text-sm text-gray-600">Mahasiswa Terlayani</div>
                 </div>
               </div>

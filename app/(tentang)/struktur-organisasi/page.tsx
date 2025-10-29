@@ -7,7 +7,7 @@ const struktur = [
     nama: "Stefani Natalia Sabatini, S.T., M.T.",
     jabatan: "Ketua Koordinator ULD",
     email: "LukasCrisantyo@staff.ukdw.ac.id",
-    foto: "/dummy/person1.jpg",
+    foto: "/Dosen.jpg",
     role: "leader",
     description: "Memimpin dan mengkoordinasikan seluruh kegiatan ULD untuk menciptakan lingkungan kampus yang inklusif"
   },
@@ -15,8 +15,8 @@ const struktur = [
     nama: "Lukas Chrisantyo A A., S.Kom., M.Eng.",
     jabatan: "Wakil Koordinator ULD",
     email: "sulis@contoh.ac.id",
-    foto: "/dummy/person2.jpg",
-    role: "deputy",
+    foto: "/Dosen1.png",
+    role: "wakil",
     description: "Mendukung koordinator dalam menjalankan program-program layanan disabilitas"
   },
 ];
@@ -36,13 +36,13 @@ export default function StrukturOrganisasiPage() {
         
         {/* Header Section */}
         <div className="max-w-6xl mx-auto text-center mb-16 -mt-30">
-          <h1 className="text-4xl  text-[#3e4095] md:text-5xl lg:text-6xl font-extrabold mb-1 leading-tight tracking-tight">
+          <h1 className="text-4xl  text-[#3e4095] md:text-5xl lg:text-6xl font-extrabold mb-1 leading-tight tracking-tight my-5">
             Struktur{" "}
             <span className="text-[#02a502]">
               Organisasi
             </span>
           </h1>
-          <div className="w-28 h-1 bg-gradient-to-r from-[#02a502] to-[#3e4095] mx-auto mb-8"></div>
+          
           
           <p className="text-lg md:text-xl text-gray-700 mx-auto leading-relaxed space-y-6">
             Tim berpengalaman yang berdedikasi untuk menciptakan lingkungan kampus yang inklusif dan mendukung mahasiswa berkebutuhan khusus
@@ -109,7 +109,7 @@ export default function StrukturOrganisasiPage() {
                     </div>
 
                     {/* Contact Info */}
-                    <div className="pt-6 border-t border-white/20">
+                    {/* <div className="pt-6 border-t border-white/20">
                       <a
                         href={`mailto:${item.email}`}
                         className="group/email inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[#3e4095]/20 to-lime-500/20 border border-green-400/30 rounded-xl text-[#3e4095] hover:text-white hover:bg-gradient-to-r hover:from-green-500/40 hover:to-lime-500/40 transition-all duration-300 backdrop-blur-sm"
@@ -117,7 +117,7 @@ export default function StrukturOrganisasiPage() {
                         <Mail className="w-5 h-5 group-hover/email:rotate-12 transition-transform duration-300" />
                         <span className="text-sm font-medium">Kirim Email</span>
                       </a>
-                    </div>
+                    </div> */}
                   </div>
 
                   {/* Hover glow effect */}
