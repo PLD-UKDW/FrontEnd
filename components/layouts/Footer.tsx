@@ -11,14 +11,14 @@ export default function Footer() {
           <h3 className="text-lg font-bold mb-4 text-white">Kontak Kami</h3>
           <p className="mb-2">
             <span className="font-semibold">WhatsApp:</span>{" "}
-            <a href="https://wa.me/62848923940" target="_blank" className="text-[#4ADE80] hover:underline">
-              +62 848-9239-40
+            <a href="https://wa.me/6285126425599" target="_blank" className="text-[#4ADE80] hover:underline">
+              +62 851-2642-5599
             </a>
           </p>
           <p className="mb-4">
             <span className="font-semibold">Email:</span>{" "}
-            <a href="mailto:ulddutawacana@ukdw.ac.id" className="text-[#4ADE80] hover:underline">
-              ulddutawacana@ukdw.ac.id
+            <a href="mailto:uld@staff.ukdw.ac.id" className="text-[#4ADE80] hover:underline">
+              uld@staff.ukdw.ac.id
             </a>
           </p>
           <p className="font-semibold mb-2">Sosial Media Kami</p>
