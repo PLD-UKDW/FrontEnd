@@ -33,7 +33,7 @@ export default function SOPPendampingan() {
         </p>
 
         <a
-          href="https://drive.google.com/file/d/DOCUMENT_ID/view"
+          href="https://drive.google.com/file/d/1nWrrG5gTW6LdXlftFMmGG8F1neRF_xGl/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-6 py-3 bg-[#02a502] text-white rounded-lg hover:bg-[#028a02] transition-colors font-semibold"
