@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "jsvectormap/dist/css/jsvectormap.css";
+/* @import "jsvectormap/dist/css/jsvectormap.css"; */
 
 :root {
   --background: #ffffff;

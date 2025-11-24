@@ -16,7 +16,7 @@ export default function VisiMisiPage() {
         opacity-0 translate-y-8 motion-safe:animate-[fadeInUp_0.8s_ease-out_forwards]"
       >
         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight text-[#3e4095]">
-          Visi, Misi, & Moto
+          Visi & Misi ULD
         </h1>
         <p className="mt-4 text-lg text-gray-600">
           Landasan dan arah ULD dalam menciptakan kampus yang inklusif
@@ -68,7 +68,7 @@ export default function VisiMisiPage() {
       </div>
 
       {/* ====== MOTO ====== */}
-      <div
+      {/* <div
         className="relative z-10 max-w-4xl mx-auto text-center p-8 rounded-2xl shadow-lg bg-white/70 
         backdrop-blur-sm border border-gray-100
         opacity-0 translate-y-8 motion-safe:animate-[fadeInUp_1.4s_ease-out_forwards]"
@@ -79,7 +79,7 @@ export default function VisiMisiPage() {
         <p className="text-xl italic text-gray-700">
           “Menyemai inklusi demi masa depan berkeadilan!”
         </p>
-      </div>
+      </div> */}
 
       {/* Custom Keyframes */}
       <style>{`
