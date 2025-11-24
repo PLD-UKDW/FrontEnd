@@ -269,7 +269,7 @@ export function NavigationMenuDemo() {
       <div className="flex items-center justify-between px-9 py-4">
         {/* Kiri - Logo + Nama Kampus */}
         <Link href="/" className="flex items-center gap-3">
-          <Image src="/logould.png" alt="Logo ULD" width={40} height={40} className="h-auto w-auto scale-120 object-contain" />
+          <Image src="/logouldup.png" alt="Logo ULD" width={40} height={40} className="h-auto w-auto scale-120 object-contain" />
           <div className="flex flex-col leading-tight text-white font-sans px-0.5">
             <span className="text-sm font-semibold">UNIT LAYANAN</span>
             <span className="text-sm font-semibold">DISABILITAS</span>
