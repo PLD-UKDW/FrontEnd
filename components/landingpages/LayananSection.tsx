@@ -2,61 +2,24 @@
 import { Users, Accessibility, BookOpen, Laptop, Car, GraduationCap, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-
 const SERVICES = [
   {
-    title: "Pendampingan",
-    desc: "Layanan untuk mendukung mahasiswa difabel dalam kegiatan akademik maupun sosial.",
-    icon: <Users className="w-10 h-10" aria-hidden="true" />,
-    path: "/layanan/pendampingan",
+    title: "Layanan Akademis",
+    desc: "Pendampingan penerimaan mahasiswa baru, asesmen kebutuhan belajar, koordinasi dengan fakultas, dukungan pembelajaran, dan pelatihan inklusi.",
+    icon: <BookOpen className="w-10 h-10" aria-hidden="true" />,
+    path: "/layanan-akademis",
     color: "from-blue-500 to-blue-600",
     bgColor: "bg-blue-50",
     hoverBg: "hover:bg-blue-100",
   },
   {
-    title: "Aksesibilitas",
-    desc: "Membantu dosen dan staf menyediakan bahan ajar inklusif dan ramah difabel.",
+    title: "Layanan Non-Akademis",
+    desc: "Asesmen aksesibilitas kampus, pendampingan mobilitas dan orientasi, konseling, advokasi, serta kampanye edukasi inklusi.",
     icon: <Accessibility className="w-10 h-10" aria-hidden="true" />,
-    path: "/layanan/aksesibilitas",
+    path: "/layanan-non-akademis",
     color: "from-green-500 to-green-600",
     bgColor: "bg-green-50",
     hoverBg: "hover:bg-green-100",
-  },
-  {
-    title: "Tutorial",
-    desc: "Pendampingan belajar bagi mahasiswa difabel: skripsi, laporan, dan tugas akhir.",
-    icon: <GraduationCap className="w-10 h-10" aria-hidden="true" />,
-    path: "/layanan/tutorial",
-    color: "from-purple-500 to-purple-600",
-    bgColor: "bg-purple-50",
-    hoverBg: "hover:bg-purple-100",
-  },
-  {
-    title: "Digitalisasi Buku",
-    desc: "Mengubah buku cetak menjadi format digital yang lebih mudah diakses.",
-    icon: <BookOpen className="w-10 h-10" aria-hidden="true" />,
-    path: "/layanan/digitalisasi-buku",
-    color: "from-orange-500 to-orange-600",
-    bgColor: "bg-orange-50",
-    hoverBg: "hover:bg-orange-100",
-  },
-  {
-    title: "Teknologi Bantu",
-    desc: "Peminjaman dan pelatihan teknologi bantu untuk mendukung aktivitas akademik.",
-    icon: <Laptop className="w-10 h-10" aria-hidden="true" />,
-    path: "/layanan/teknologi-bantu",
-    color: "from-teal-500 to-teal-600",
-    bgColor: "bg-teal-50",
-    hoverBg: "hover:bg-teal-100",
-  },
-  {
-    title: "Mobilitas",
-    desc: "Layanan antar-jemput internal kampus untuk mendukung mobilitas difabel.",
-    icon: <Car className="w-10 h-10" aria-hidden="true" />,
-    path: "/layanan/mobilitas",
-    color: "from-indigo-500 to-indigo-600",
-    bgColor: "bg-indigo-50",
-    hoverBg: "hover:bg-indigo-100",
   },
 ];
 
@@ -64,10 +27,7 @@ export default function LayananSection() {
   const [focusedCard, setFocusedCard] = useState<number | null>(null);
 
   return (
-    <section
-      className="relative bg-gradient-to-br from-gray-50 via-white to-blue-50 py-12 px-4 md:px-8 lg:px-16"
-      aria-labelledby="layanan-heading"
-    >
+    <section className="relative bg-gradient-to-br from-gray-50 via-white to-blue-50 py-12 px-4 md:px-8 lg:px-16" aria-labelledby="layanan-heading">
       {/* Background decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-16 left-6 w-20 h-20 bg-blue-200/30 rounded-full blur-2xl"></div>
@@ -83,36 +43,25 @@ export default function LayananSection() {
             Layanan Inklusif
           </div>
 
-          <h2
-            id="layanan-heading"
-            className="text-base md:text-2xl lg:text-3xl font-black text-[#3e4095] tracking-tight leading-tight mb-2"
-          >
+          <h2 id="layanan-heading" className="text-base md:text-2xl lg:text-3xl font-black text-[#3e4095] tracking-tight leading-tight mb-2">
             Layanan <span className="text-[#02a502]">Kami</span>
           </h2>
-            <p className="text-base md:text-lg lg:text-base text-gray-700 max-w-3xl mx-auto leading-relaxed font-medium">
-            Kami hadir untuk memastikan aksesibilitas, dukungan, dan inklusi di lingkungan kampus
-            bagi seluruh civitas akademika.
-            </p>
+          <p className="text-base md:text-lg lg:text-base text-gray-700 max-w-3xl mx-auto leading-relaxed font-medium">Kami hadir untuk memastikan aksesibilitas, dukungan, dan inklusi di lingkungan kampus bagi seluruh civitas akademika.</p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
+        <div className="grid gap-4 sm:grid-cols-2 justify-center max-w-3xl mx-auto">
           {SERVICES.map((service, index) => (
-            <article
-              key={service.title}
-              className="group relative"
-              onMouseEnter={() => setFocusedCard(index)}
-              onMouseLeave={() => setFocusedCard(null)}
-            >
+            <article key={service.title} className="group relative" onMouseEnter={() => setFocusedCard(index)} onMouseLeave={() => setFocusedCard(null)}>
               <Link
                 href={service.path}
                 className={`
-                  block relative h-full bg-white rounded-2xl shadow-md border border-gray-100
-                  transition-all duration-500 ease-out
-                  hover:shadow-xl hover:-translate-y-2 hover:scale-[1.01]
-                  focus:outline-none focus:ring-2 focus:ring-[#008000]/40 focus:ring-offset-1
-                  ${focusedCard === index ? 'shadow-xl -translate-y-2 scale-[1.01]' : ''}
-                `}
+          block relative h-full bg-white rounded-2xl shadow-md border border-gray-100
+          transition-all duration-500 ease-out
+          hover:shadow-xl hover:-translate-y-2 hover:scale-[1.01]
+          focus:outline-none focus:ring-2 focus:ring-[#008000]/40 focus:ring-offset-1
+          ${focusedCard === index ? "shadow-xl -translate-y-2 scale-[1.01]" : ""}
+        `}
                 aria-describedby={`service-desc-${index}`}
               >
                 {/* Card Content */}
@@ -131,9 +80,7 @@ export default function LayananSection() {
                       {/* Icon background gradient */}
                       <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-10 group-hover:opacity-20 transition-opacity duration-300`}></div>
                       {/* Icon */}
-                      <div className="relative z-10 text-[#008000] group-hover:text-[#2d5f1f] transition-colors duration-300">
-                        {service.icon}
-                      </div>
+                      <div className="relative z-10 text-[#008000] group-hover:text-[#2d5f1f] transition-colors duration-300">{service.icon}</div>
                     </div>
                     {/* Floating indicator */}
                     <div className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-[#02a502] rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
@@ -143,14 +90,9 @@ export default function LayananSection() {
 
                   {/* Content */}
                   <div className="flex-1 flex flex-col">
-                    <h3 className="text-lg lg:text-xl font-bold text-[#3e4095] mb-2 group-hover:text-[#02a502] transition-colors duration-300">
-                      {service.title}
-                    </h3>
+                    <h3 className="text-lg lg:text-xl font-bold text-[#3e4095] mb-2 group-hover:text-[#02a502] transition-colors duration-300">{service.title}</h3>
 
-                    <p
-                      id={`service-desc-${index}`}
-                      className="text-gray-600 text-sm lg:text-base leading-relaxed flex-1 font-medium"
-                    >
+                    <p id={`service-desc-${index}`} className="text-gray-600 text-sm lg:text-base leading-relaxed flex-1 font-medium">
                       {service.desc}
                     </p>
 

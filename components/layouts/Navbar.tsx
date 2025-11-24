@@ -222,36 +222,12 @@ const componentsProsedur: { title: string; href: string }[] = [
 
 const componentsLayanan: { title: string; href: string }[] = [
   {
-    title: "Layanan Aksesbilitas",
-    href: "/layanan-aksesbilitas",
+    title: "Layanan Akademis",
+    href: "/layanan-akademis",
   },
   {
-    title: "Layanan Mobilitas",
-    href: "/layanan-mobilitas",
-  },
-  {
-    title: "Layanan Teknologi Bantu",
-    href: "/layanan-teknologi-bantu",
-  },
-  {
-    title: "Request Pendamping",
-    href: "/request-pendamping",
-  },
-  {
-    title: "Digitalisasi Buku",
-    href: "/digitalisasi-buku",
-  },
-  {
-    title: "Tutorial",
-    href: "/tutorial",
-  },
-  {
-    title: "Layanan Konseling",
-    href: "/layanan-konseling",
-  },
-  {
-    title: "Pendaftaran Volunteer",
-    href: "/volunteer",
+    title: "Layanan Non-Akademis",
+    href: "/layanan-non-akademis",
   },
 ];
 
@@ -354,7 +330,7 @@ export function NavigationMenuDemo() {
               <NavigationMenuItem>
                 <NavigationMenuTrigger>Layanan</NavigationMenuTrigger>
                 <NavigationMenuContent className="bg-white/95 backdrop-blur-md shadow-xl rounded-xl border border-gray-200 p-4 animate-in fade-in-80 slide-in-from-top-5">
-                  <ul className="grid grid-cols-2 gap-2 w-[400px]">
+                  <ul className="grid w-[260px] gap-2">
                     {componentsLayanan.map((c) => (
                       <li key={c.title}>
                         <NavigationMenuLink asChild>

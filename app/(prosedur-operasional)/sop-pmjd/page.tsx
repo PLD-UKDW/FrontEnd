@@ -33,7 +33,7 @@ export default function SOPPMJD() {
         </p>
 
         <a
-          href="https://drive.google.com/file/d/DOCUMENT_ID/view"
+          href="https://drive.google.com/drive/folders/1Jfi8dJxzJm08reufr6i45zk-U8veJxCd"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-6 py-3 bg-[#02a502] text-white rounded-lg hover:bg-[#028a02] transition-colors font-semibold"

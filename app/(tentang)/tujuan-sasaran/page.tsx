@@ -1,138 +1,138 @@
 "use client";
-import { Target, Users, BookOpen, Heart, Shield, CheckCircle } from "lucide-react";
 
-const tujuanList = [
-  "Menciptakan lingkungan kampus yang inklusif dan ramah disabilitas",
-  "Memberikan dukungan akademik berkualitas bagi mahasiswa berkebutuhan khusus",
-  "Meningkatkan kesadaran civitas akademika tentang pentingnya inklusi",
-  "Membangun kemandirian dan kepercayaan diri mahasiswa berkebutuhan khusus"
-];
-
-const sasaranList = [
-  {
-    kategori: "Mahasiswa",
-    icon: <Users className="w-6 h-6 text-blue-500" />,
-    daftar: [
-      "Mendapat pendampingan akademik yang berkualitas",
-      "Berpartisipasi aktif dalam kegiatan kampus",
-      "Mengembangkan potensi secara optimal"
-    ]
-  },
-  {
-    kategori: "Dosen & Staf",
-    icon: <Shield className="w-6 h-6 text-green-500" />,
-    daftar: [
-      "Mampu menyediakan bahan ajar yang inklusif",
-      "Memahami cara melayani mahasiswa berkebutuhan khusus",
-      "Menerapkan prinsip universal design"
-    ]
-  },
-  {
-    kategori: "Institusi",
-    icon: <Target className="w-6 h-6 text-purple-500" />,
-    daftar: [
-      "Memiliki fasilitas yang sepenuhnya aksesibel",
-      "Menyediakan teknologi bantu yang memadai",
-      "Menjadi rujukan perguruan tinggi inklusif"
-    ]
-  }
-];
+import { CheckCircle2 } from "lucide-react";
 
 export default function TujuanSasaranPage() {
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-6 pt-30">
-      <div className="max-w-4xl mx-auto">
-        
-        {/* Header */}
-        <div className="text-center mb-16 -mt-8">
-            <h1 className="text-4xl  text-[#3e4095] md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight tracking-tight">
-            Tujuan <span className="text-[#02a502]">& </span>Sasaran
-          </h1>
-          <p className="text-lg text-gray-700 mx-auto leading-relaxed space-y-6">
-            Komitmen ULD UKDW dalam menciptakan lingkungan pendidikan yang inklusif
-            dan memberdayakan setiap mahasiswa
-          </p>
-        </div>
-
-        {/* Tujuan Section */}
-        <section className="mb-10 -mt-10">
-          <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                <Target className="w-6 h-6 text-[#3e4095]" />
-              </div>
-              <h2 className="text-3xl font-bold text-[#3e4095]">Tujuan</h2>
-            </div>
-            
-            <div className="space-y-4">
-              {tujuanList.map((tujuan, index) => (
-                <div key={index} className="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-50 transition-colors">
-                  <div className="flex-shrink-0 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center -mt-1">
-                    <span className="text-green-600 font-bold text-sm">{index + 1}</span>
-                  </div>
-                  <p className="text-gray-700 space-y-6 leading-relaxed">{tujuan}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Sasaran Section */}
-        <section>
-          <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                <Heart className="w-6 h-6 text-[#008000]" />
-              </div>
-              <h2 className="text-3xl font-bold text-[#3e4095]">Sasaran</h2>
-            </div>
-
-            <div className="grid gap-8 md:gap-12">
-              {sasaranList.map((sasaran, index) => (
-                <div key={index} className="border-l-4 border-gray-200 pl-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    {sasaran.icon}
-                    <h3 className="text-2xl font-bold text-gray-900">{sasaran.kategori}</h3>
-                  </div>
-                  
-                  <ul className="space-y-3">
-                    {sasaran.daftar.map((item, itemIndex) => (
-                      <li key={itemIndex} className="flex items-start gap-3">
-                        <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
-                        <span className="text-gray-700 space-y-6 leading-relaxed">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Call to Action */}
-        {/* <div className="mt-16 text-center">
-          <div className="bg-[#3E7B27] rounded-2xl p-8 text-white">
-            <h3 className="text-2xl font-bold mb-4">Mari Bersama Wujudkan Kampus Inklusif</h3>
-            <p className="text-lg mb-6 opacity-90">
-              Bergabunglah dengan kami dalam menciptakan lingkungan pendidikan yang ramah dan inklusif
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/layanan"
-                className="px-6 py-3 bg-white text-[#3E7B27] font-semibold rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                Lihat Layanan
-              </a>
-              <a
-                href="/kontak"
-                className="px-6 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-[#3E7B27] transition-colors"
-              >
-                Hubungi Kami
-              </a>
-            </div>
-          </div>
-        </div> */}
+    <section className="relative min-h-screen bg-white py-24 px-6 md:px-16 overflow-hidden">
+      {/* Decorative Accents */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-24 left-10 w-40 h-40 bg-[#3e4095]/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-64 h-64 bg-[#02a502]/10 rounded-full blur-3xl"></div>
       </div>
-    </div>
+
+      {/* Header */}
+      <div
+        className="relative z-10 max-w-6xl mx-auto text-center mb-16
+        opacity-0 translate-y-8 motion-safe:animate-[fadeInUp_0.8s_ease-out_forwards]"
+      >
+        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#3e4095] mb-4">
+          Tujuan & Sasaran
+        </h1>
+        <p className="text-lg text-gray-600">
+          Arah dan fokus utama ULD dalam menciptakan lingkungan kampus yang inklusif dan aksesibel
+        </p>
+      </div>
+
+      {/* ==== TUJUAN ==== */}
+      <div
+        className="relative z-10 max-w-5xl mx-auto mb-16 p-10 rounded-2xl shadow-lg bg-white/70 
+        backdrop-blur-sm border border-gray-100
+        opacity-0 translate-y-8 motion-safe:animate-[fadeInUp_1s_ease-out_forwards]"
+      >
+        <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-[#02a502] text-center">
+          Tujuan
+        </h2>
+
+        <div className="space-y-6">
+          {/* Item */}
+          <div className="flex gap-4 items-start">
+            <CheckCircle2 className="w-7 h-7 text-[#02a502] mt-1" />
+            <div>
+              <h3 className="font-semibold text-xl text-gray-800">Aksesibilitas</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Tercapainya kemudahan akses fisik, informasi, dan akademik bagi mahasiswa penyandang disabilitas.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex gap-4 items-start">
+            <CheckCircle2 className="w-7 h-7 text-[#02a502] mt-1" />
+            <div>
+              <h3 className="font-semibold text-xl text-gray-800">Inklusivitas</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Mewujudkan lingkungan kampus yang terbuka dan menerima keberagaman kemampuan.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex gap-4 items-start">
+            <CheckCircle2 className="w-7 h-7 text-[#02a502] mt-1" />
+            <div>
+              <h3 className="font-semibold text-xl text-gray-800">Kemandirian</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Mendorong pengembangan potensi dan otonomi mahasiswa disabilitas.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex gap-4 items-start">
+            <CheckCircle2 className="w-7 h-7 text-[#02a502] mt-1" />
+            <div>
+              <h3 className="font-semibold text-xl text-gray-800">Kapasitasi</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Meningkatkan kompetensi civitas akademika dalam layanan disabilitas.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ==== SASARAN ==== */}
+      <div
+        className="relative z-10 max-w-5xl mx-auto p-10 rounded-2xl shadow-lg bg-white/70 
+        backdrop-blur-sm border border-gray-100
+        opacity-0 translate-y-8 motion-safe:animate-[fadeInUp_1.2s_ease-out_forwards]"
+      >
+        <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-[#02a502] text-center">
+          Sasaran
+        </h2>
+
+        <ul className="space-y-6 text-gray-700 text-lg leading-relaxed">
+          <li className="flex gap-4 items-start">
+            <span className="mt-1">
+              <CheckCircle2 className="w-6 h-6 text-[#3e4095]" />
+            </span>
+            Mahasiswa penyandang disabilitas yang mendapatkan layanan sesuai kebutuhan individualnya.
+          </li>
+
+          <li className="flex gap-4 items-start">
+            <span className="mt-1">
+              <CheckCircle2 className="w-6 h-6 text-[#3e4095]" />
+            </span>
+            Dosen dan tenaga kependidikan yang kompeten dalam mendukung pembelajaran inklusif.
+          </li>
+
+          <li className="flex gap-4 items-start">
+            <span className="mt-1">
+              <CheckCircle2 className="w-6 h-6 text-[#3e4095]" />
+            </span>
+            Mahasiswa secara umum yang memiliki kesadaran dan sikap inklusif terhadap penyandang disabilitas.
+          </li>
+
+          <li className="flex gap-4 items-start">
+            <span className="mt-1">
+              <CheckCircle2 className="w-6 h-6 text-[#3e4095]" />
+            </span>
+            Fasilitas dan teknologi kampus yang mendukung aksesibilitas dan kenyamanan bagi semua.
+          </li>
+
+          <li className="flex gap-4 items-start">
+            <span className="mt-1">
+              <CheckCircle2 className="w-6 h-6 text-[#3e4095]" />
+            </span>
+            Lingkungan kampus yang menerapkan budaya menghargai keberagaman dan ramah disabilitas.
+          </li>
+        </ul>
+      </div>
+
+      {/* Custom Keyframes */}
+      <style>{`
+        @keyframes fadeInUp {
+          0% { opacity: 0; transform: translateY(20px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
+    </section>
   );
 }
