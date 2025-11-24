@@ -2,6 +2,7 @@
 import { useState, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip, LineChart, BarChart, XAxis, YAxis, CartesianGrid, Line, Bar } from 'recharts';
+// import Map from './map';
 
 const disabilityData = [
   { name: 'Tuna Netra', value: 12 },
@@ -361,6 +362,7 @@ export default function StatistikMahasiswaPage() {
               </div>
             </div>
           </div>
+          {/* <Map /> */}
           {/* Map Section */}
           <div className="mb-12 bg-white shadow-lg rounded-xl p-6 border border-gray-200">
               <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
