@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { Calendar, Users, Award, Heart, BookOpen, Target } from "lucide-react";
+import { BookOpen} from "lucide-react";
 
 export default function SejarahPage() {
   return (

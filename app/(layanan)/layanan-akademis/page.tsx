@@ -1,7 +1,7 @@
 "use client";
 
-import { FileText, Users, BookOpen, Car, HelpCircle, ClipboardList, CheckCircle2 } from "lucide-react";
-import Link from "next/link";
+import { CheckCircle2 } from "lucide-react";
+// import Link from "next/link";
 
 export default function LayananAkademis() {
   return (

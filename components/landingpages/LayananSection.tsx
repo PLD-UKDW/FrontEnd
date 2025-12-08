@@ -1,5 +1,5 @@
 "use client";
-import { Users, Accessibility, BookOpen, Laptop, Car, GraduationCap, ArrowRight } from "lucide-react";
+import { Accessibility, BookOpen, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 const SERVICES = [
