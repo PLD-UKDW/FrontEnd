@@ -3,8 +3,6 @@
 import {
   ExternalLink,
   FileText,
-  Phone,
-  Mail,
   Users,
   Clock,
   CheckCircle,

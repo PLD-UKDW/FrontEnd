@@ -6,8 +6,6 @@ import {
   Monitor, 
   Accessibility, 
   Cpu, 
-  Mail, 
-  Phone, 
   Wrench, 
   HelpCircle, 
   ClipboardList, 
