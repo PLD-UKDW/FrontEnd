@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Calendar, User, ArrowRight, Clock } from "lucide-react";
+import Image from "next/image";
 
 // Data berita yang lebih lengkap
 const NEWS_DATA = [
@@ -156,7 +157,7 @@ function BeritaCarousel({
               key={berita.id}
               className="flex flex-col h-full border border-gray-100 rounded-xl overflow-hidden bg-white shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:scale-105"
             >
-              <img
+              <Image
                 src={berita.image}
                 alt={berita.title}
                 className="w-full h-48 object-cover"
@@ -240,7 +241,7 @@ function BeritaDetail({ berita, onBack }: { berita: Berita; onBack: () => void }
 
         {/* Article Header */}
         <article className="bg-white rounded-2xl shadow-lg overflow-hidden">
-          <img
+          <Image
             src={berita.image}
             alt={berita.title}
             className="w-full h-80 object-cover"
@@ -312,7 +313,7 @@ function BeritaList({ onSelectBerita, onBack }: BeritaListProps) {
               key={berita.id}
               className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
             >
-              <img
+              <Image
                 src={berita.image}
                 alt={berita.title}
                 className="w-full h-48 object-cover"
