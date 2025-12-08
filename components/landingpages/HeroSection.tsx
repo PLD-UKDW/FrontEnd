@@ -136,11 +136,11 @@ export default function Hero() {
         {/* Stats */}
         <div className="flex gap-4 mb-8">
           <div className="flex-1 rounded-2xl border border-white/40 bg-white/10 p-6 backdrop-blur-md text-center">
-            <span className="text-4xl font-bold text-lime-200 block">4</span>
+            <span className="text-4xl font-bold text-lime-200 block">14</span>
             <p className="text-sm text-green-100">Active Students</p>
           </div>
           <div className="flex-1 rounded-2xl border border-white/40 bg-white/10 p-6 backdrop-blur-md text-center">
-            <span className="text-4xl font-bold text-lime-200 block">3</span>
+            <span className="text-4xl font-bold text-lime-200 block">11</span>
             <p className="text-sm text-green-100">Graduates</p>
           </div>
         </div>
