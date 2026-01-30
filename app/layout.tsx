@@ -1,7 +1,7 @@
+import AppShell from "@/components/layouts/AppShell";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
-import AppShell from "@/components/layouts/AppShell";
 // import 'jsvectormap/dist/css/jsvectormap.css';
 
 

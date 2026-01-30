@@ -92,10 +92,40 @@
 // }
 
 "use client";
+import { API_BASE } from "@/lib/api";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Hero() {
+  const [activeCount, setActiveCount] = useState<number>(0);
+  const [graduateCount, setGraduateCount] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const normalizeStatus = (s?: string) => (s ?? "").trim().toLowerCase();
+
+  useEffect(() => {
+    const fetchCounts = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const res = await fetch(`${API_BASE}/statistik-mahasiswa`);
+        const json = await res.json();
+        const data: any[] = Array.isArray(json?.data) ? json.data : [];
+        const aktif = data.filter((d) => normalizeStatus(d.status) === "aktif").length;
+        const lulus = data.filter((d) => normalizeStatus(d.status) === "lulus").length;
+        setActiveCount(aktif);
+        setGraduateCount(lulus);
+      } catch (e: any) {
+        setError(e?.message || "Gagal memuat statistik");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchCounts();
+  }, []);
+
   return (
     <section
       className="relative w-full min-h-[90vh] flex flex-col md:flex-row items-center justify-between
@@ -136,11 +166,11 @@ export default function Hero() {
         {/* Stats */}
         <div className="flex gap-4 mb-8">
           <div className="flex-1 rounded-2xl border border-white/40 bg-white/10 p-6 backdrop-blur-md text-center">
-            <span className="text-4xl font-bold text-lime-200 block">14</span>
+            <span className="text-4xl font-bold text-lime-200 block">{loading ? "…" : activeCount}</span>
             <p className="text-sm text-green-100">Active Students</p>
           </div>
           <div className="flex-1 rounded-2xl border border-white/40 bg-white/10 p-6 backdrop-blur-md text-center">
-            <span className="text-4xl font-bold text-lime-200 block">11</span>
+            <span className="text-4xl font-bold text-lime-200 block">{loading ? "…" : graduateCount}</span>
             <p className="text-sm text-green-100">Graduates</p>
           </div>
         </div>
