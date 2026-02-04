@@ -28,3 +28,107 @@ html, body {
   min-height: 100%;
   overflow-x: hidden;
 }
+
+html[data-a11y-contrast="high"] {
+  --background: #ffffff;
+  --foreground: #000000;
+}
+
+html[data-a11y-contrast="high"] .a11y-contrast-root {
+  filter: contrast(1.4) saturate(0%) !important;
+}
+html[data-a11y-contrast="high"] *,
+html[data-a11y-contrast="high"] *::before,
+html[data-a11y-contrast="high"] *::after {
+  outline-color: #000 !important;
+}
+html[data-a11y-contrast="high"] *:focus {
+  outline: 3px solid #000 !important;
+  outline-offset: 2px !important;
+}
+
+html[data-a11y-contrast="high"] .a11y-toolbar {
+  filter: none !important;
+}
+
+html[data-a11y-fontscale="1"] { font-size: 100%; }
+html[data-a11y-fontscale="1.125"] { font-size: 112.5%; }
+html[data-a11y-fontscale="1.25"] { font-size: 125%; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html[data-a11y-motion="reduce"] *,
+  html[data-a11y-motion="reduce"] *::before,
+  html[data-a11y-motion="reduce"] *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Underline links for clarity */
+html[data-a11y-links="underline"] a {
+  text-decoration: underline !important;
+}
+
+/* Dyslexia-friendly font: use system-readable fallback if no special font installed */
+/* OpenDyslexic font faces: try local, then project /fonts, then CDN as fallback */
+@font-face {
+  font-family: "OpenDyslexic";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local("OpenDyslexic"), local("OpenDyslexic3"),
+    url("/fonts/OpenDyslexic-Regular.woff2") format("woff2"),
+    url("/fonts/OpenDyslexic-Regular.woff") format("woff"),
+    url("https://cdn.jsdelivr.net/gh/antijingoist/open-dyslexic/otf/OpenDyslexic-Regular.otf") format("opentype");
+}
+@font-face {
+  font-family: "OpenDyslexic";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local("OpenDyslexic Italic"), local("OpenDyslexic-Italic"),
+    url("/fonts/OpenDyslexic-Italic.woff2") format("woff2"),
+    url("/fonts/OpenDyslexic-Italic.woff") format("woff"),
+    url("https://cdn.jsdelivr.net/gh/antijingoist/open-dyslexic/otf/OpenDyslexic-Italic.otf") format("opentype");
+}
+@font-face {
+  font-family: "OpenDyslexic";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    local("OpenDyslexic Bold"), local("OpenDyslexic-Bold"),
+    url("/fonts/OpenDyslexic-Bold.woff2") format("woff2"),
+    url("/fonts/OpenDyslexic-Bold.woff") format("woff"),
+    url("https://cdn.jsdelivr.net/gh/antijingoist/open-dyslexic/otf/OpenDyslexic-Bold.otf") format("opentype");
+}
+html[data-a11y-dyslexia="on"] {
+  --font-montserrat: "OpenDyslexic", Arial, Helvetica, sans-serif;
+}
+/* Enforce OpenDyslexic across the entire page when enabled */
+html[data-a11y-dyslexia="on"] body,
+html[data-a11y-dyslexia="on"] body * {
+  font-family: "OpenDyslexic", Arial, Helvetica, sans-serif !important;
+}
+
+/* Colorblind modes using filters */
+/* Apply colorblind filters to the content wrapper to avoid impacting fixed overlays */
+html[data-a11y-colorblind="mono"] .a11y-contrast-root {
+  filter: grayscale(100%) !important;
+}
+html[data-a11y-colorblind="rg"] .a11y-contrast-root {
+  /* Deuteranopia approximation via SVG color matrix defined in layout */
+  filter: url(#cb-rg) !important;
+}
+html[data-a11y-colorblind="by"] .a11y-contrast-root {
+  /* Tritanopia approximation via SVG color matrix defined in layout */
+  filter: url(#cb-by) !important;
+}
+
+/* Ensure the accessibility toolbar isn't filtered or repositioned */
+html[data-a11y-colorblind] .a11y-toolbar {
+  filter: none !important;
+}
