@@ -1,10 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, Calendar, User, ArrowRight, Clock } from "lucide-react";
+import { ArrowRight, Calendar, ChevronLeft, ChevronRight, User } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 // Data berita yang lebih lengkap
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const NEWS_DATA = [
   {
     id: 1,
@@ -121,18 +123,109 @@ const NEWS_DATA = [
 ];
 
 // Component untuk halaman detail berita
-type Berita = typeof NEWS_DATA[number];
+type Berita = {
+  id: number;
+  title: string;
+  desc: string;
+  image: string;
+  images: string[];
+  date: string;
+  author: string;
+  category: string;
+  content: string;
+};
+
+// Decode HTML entities and strip tags to produce readable text for cards/detail
+function normalizeContent(html?: string) {
+  if (!html) return "";
+  let decoded = html;
+
+  // Decode common entities (browser safe since this is a client component)
+  if (typeof window !== "undefined") {
+    const textarea = document.createElement("textarea");
+    textarea.innerHTML = decoded;
+    decoded = textarea.value;
+  }
+
+  // Drop scripts/styles entirely
+  decoded = decoded.replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, "");
+  decoded = decoded.replace(/<style[\s\S]*?>[\s\S]*?<\/style>/gi, "");
+
+  // Preserve basic line breaks before stripping tags
+  decoded = decoded
+    .replace(/<\s*br\s*\/?>/gi, "\n")
+    .replace(/<\/(p|div|section|article)>/gi, "\n");
+
+  // Remove remaining tags
+  decoded = decoded.replace(/<[^>]+>/g, "");
+
+  // Collapse whitespace and trim
+  return decoded.replace(/\s+/g, " ").replace(/(\s*\n\s*)+/g, "\n").trim();
+}
+
+// Helper untuk format tanggal Indonesia
+function formatIDDate(input?: string | Date | null) {
+  if (!input) return "";
+  const d = typeof input === "string" ? new Date(input) : input;
+  if (Number.isNaN(d.getTime())) return "";
+  return d.toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" });
+}
+
+// Bangun URL gambar dari content_images (ambil file pertama)
+function buildImageUrl(content_images?: string) {
+  const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+  if (!content_images) return "/berita/1.jpeg"; // fallback
+  const first = content_images.split(",").map(s => s.trim()).filter(Boolean)[0];
+  if (!first) return "/berita/1.jpeg";
+  return `${API_BASE}/uploads/berita/${first}`;
+}
+
+// Bangun semua URL gambar dari content_images
+function buildImages(content_images?: string) {
+  const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+  if (!content_images) return [] as string[];
+  return content_images
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .map((file) => `${API_BASE}/uploads/berita/${file}`);
+}
+
+// Konversi respons API ke tipe Berita FrontEnd
+function mapApiToBerita(item: unknown): Berita {
+  const i = item as { id: number; title?: string; content?: string; content_images?: string; category?: { name?: string }; tanggal?: string; createdAt?: string };
+  const categoryName = i?.category?.name ?? "Umum";
+  const tanggal = i?.tanggal ?? i?.createdAt;
+  const images = buildImages(i?.content_images);
+  const imageUrl = images[0] || buildImageUrl(i?.content_images);
+  const content: string = i?.content ?? "";
+  const normalized = normalizeContent(content);
+  const desc = normalized.slice(0, 160) + (normalized.length > 160 ? "…" : "");
+  return {
+    id: Number(i?.id),
+    title: String(i?.title ?? ""),
+    desc,
+    image: imageUrl,
+    images,
+    date: formatIDDate(tanggal),
+    author: "Admin",
+    category: categoryName,
+    content,
+  } as Berita;
+}
 
 // Carousel for 3 cards per slide, 1 row, with space between cards, tanpa background luar
 function BeritaCarousel({
+  items,
   onSelectBerita,
 }: {
+  items: Berita[];
   onSelectBerita: (berita: Berita) => void;
 }) {
   const [current, setCurrent] = useState(0);
 
   // Calculate total slides (3 per slide)
-  const totalSlides = Math.ceil(NEWS_DATA.length / 3);
+  const totalSlides = Math.max(1, Math.ceil(items.length / 3));
 
   // Auto-slide every 5 seconds
   useEffect(() => {
@@ -146,7 +239,7 @@ function BeritaCarousel({
   const prevSlide = () => setCurrent((prev) => (prev - 1 + totalSlides) % totalSlides);
 
   // Get berita for current slide
-  const beritaSlice = NEWS_DATA.slice(current * 3, current * 3 + 3);
+  const beritaSlice = items.slice(current * 3, current * 3 + 3);
 
   return (
     <div className="relative max-w-6xl mx-auto mb-12">
@@ -155,11 +248,13 @@ function BeritaCarousel({
           {beritaSlice.map((berita) => (
             <article
               key={berita.id}
-              className="flex flex-col h-full border border-gray-100 rounded-xl overflow-hidden bg-white shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:scale-105"
+              className="flex flex-col h-full rounded-xl overflow-hidden bg-white shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:scale-105"
             >
               <Image
                 src={berita.image}
                 alt={berita.title}
+                width={800}
+                height={480}
                 className="w-full h-48 object-cover"
               />
               <div className="p-6 flex flex-col flex-1">
@@ -227,6 +322,7 @@ function BeritaCarousel({
 
 // Component untuk halaman detail berita
 function BeritaDetail({ berita, onBack }: { berita: Berita; onBack: () => void }) {
+  const normalized = normalizeContent(berita.content);
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-4xl mx-auto px-6 py-8">
@@ -241,11 +337,42 @@ function BeritaDetail({ berita, onBack }: { berita: Berita; onBack: () => void }
 
         {/* Article Header */}
         <article className="bg-white rounded-2xl shadow-lg overflow-hidden">
-          <Image
-            src={berita.image}
-            alt={berita.title}
-            className="w-full h-80 object-cover"
-          />
+          {berita.images && berita.images.length > 1 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4">
+              {berita.images.map((img, idx) => {
+                const isThree = berita.images.length === 3;
+                const thirdLayout = isThree && idx === 2;
+                const baseWrap = "overflow-hidden rounded-xl bg-gray-50";
+                const wrapClass = thirdLayout
+                  ? `${baseWrap} sm:row-start-1 sm:row-span-2 sm:col-start-2`
+                  : isThree
+                    ? `${baseWrap} ${idx === 0 ? "sm:row-start-1 sm:col-start-1" : "sm:row-start-2 sm:col-start-1"}`
+                    : baseWrap;
+                const imgClass = thirdLayout
+                  ? "w-full h-full min-h-[320px] object-cover"
+                  : "w-full h-56 object-cover";
+                return (
+                  <div key={img + idx} className={wrapClass}>
+                    <Image
+                      src={img}
+                      alt={`${berita.title} - ${idx + 1}`}
+                      width={1200}
+                      height={720}
+                      className={imgClass}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <Image
+              src={berita.image}
+              alt={berita.title}
+              width={1200}
+              height={640}
+              className="w-full h-80 object-cover"
+            />
+          )}
           <div className="p-8">
             {/* Meta Information */}
             <div className="flex flex-wrap items-center gap-4 mb-6 text-sm text-gray-600">
@@ -267,7 +394,7 @@ function BeritaDetail({ berita, onBack }: { berita: Berita; onBack: () => void }
             </h1>
             {/* Content */}
             <div className="prose prose-lg max-w-none">
-              {berita.content.split('\n\n').map((paragraph, index) => (
+              {normalized.split("\n").map((paragraph, index) => (
                 <p key={index} className="text-gray-700 leading-relaxed mb-6">
                   {paragraph.trim()}
                 </p>
@@ -280,111 +407,54 @@ function BeritaDetail({ berita, onBack }: { berita: Berita; onBack: () => void }
   );
 }
 
-// Component untuk daftar semua berita
-type BeritaListProps = {
-  onSelectBerita: (berita: Berita) => void;
-  onBack: () => void;
-};
-
-function BeritaList({ onSelectBerita, onBack }: BeritaListProps) {
-  return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-6xl mx-auto px-6 py-8">
-        {/* Header */}
-        <div className="mb-8">
-          <button
-            onClick={onBack}
-            className="mb-4 flex items-center gap-2 text-[#3E7B27] hover:text-[#356a21] font-medium transition-colors"
-          >
-            <ChevronLeft className="w-5 h-5" />
-            Kembali ke Beranda
-          </button>
-          <h1 className="text-4xl md:text-5xl font-bold text-[#0e284d] mb-4">
-            Semua Berita & Kegiatan
-          </h1>
-          <p className="text-base md:text-lg lg:text-base text-gray-700 max-w-3xl mx-auto leading-relaxed font-medium">
-            Ikuti perkembangan terbaru kegiatan dan prestasi kampus inklusi
-          </p>
-        </div>
-        {/* News Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {NEWS_DATA.map((berita) => (
-            <article
-              key={berita.id}
-              className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-            >
-              <Image
-                src={berita.image}
-                alt={berita.title}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-6">
-                {/* Meta */}
-                <div className="flex items-center justify-between mb-3">
-                  <span className="bg-[#3E7B27] text-white px-2 py-1 rounded-full text-xs font-medium">
-                    {berita.category}
-                  </span>
-                  <div className="flex items-center gap-1 text-sm text-gray-500">
-                    <Clock className="w-4 h-4" />
-                    {berita.date}
-                  </div>
-                </div>
-                {/* Title */}
-                <h2 className="text-xl font-bold text-[#3e4095] mb-3 line-clamp-2">
-                  {berita.title}
-                </h2>
-                {/* Description */}
-                <p className="text-gray-600 text-sm lg:text-base leading-relaxed flex-1 font-medium">
-                  {berita.desc}
-                </p>
-                {/* Read More Button */}
-                <button
-                  onClick={() => onSelectBerita(berita)}
-                  className="w-full bg-[#02a502] text-white py-2 px-4 rounded-lg hover:bg-[#008000] transition-colors flex items-center justify-center gap-2"
-                >
-                  Baca Selengkapnya
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 // Main component
 export default function BeritaSection() {
-  const [currentPage, setCurrentPage] = useState('home'); // 'home', 'list', 'detail'
   const [selectedBerita, setSelectedBerita] = useState<Berita | null>(null);
+  const [items, setItems] = useState<Berita[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    (async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+        const res = await fetch(`${API_BASE}/api/berita-public`);
+        if (!res.ok) {
+          throw new Error(`Gagal memuat berita (${res.status})`);
+        }
+        const json = await res.json();
+        const data = Array.isArray(json?.data) ? json.data : [];
+        const mapped: Berita[] = data.map(mapApiToBerita);
+        if (active) setItems(mapped);
+      } catch (e) {
+        const message = e instanceof Error ? e.message : "Terjadi kesalahan memuat berita";
+        if (active) setError(message);
+      } finally {
+        if (active) setLoading(false);
+      }
+    })();
+    return () => { active = false; };
+  }, []);
 
   const handleSelectBerita = (berita: Berita) => {
     setSelectedBerita(berita);
-    setCurrentPage('detail');
-  };
-
-  const handleViewAllBerita = () => {
-    setCurrentPage('list');
   };
 
   const handleBackToHome = () => {
-    setCurrentPage('home');
     setSelectedBerita(null);
   };
 
-  // Render different pages based on current page
-  if (currentPage === 'detail' && selectedBerita) {
+  // Render detail page if berita is selected
+  if (selectedBerita) {
     return <BeritaDetail berita={selectedBerita} onBack={handleBackToHome} />;
-  }
-
-  if (currentPage === 'list') {
-    return <BeritaList onSelectBerita={handleSelectBerita} onBack={handleBackToHome} />;
   }
 
   // Home page with 3-card carousel
   return (
-    <section className="relative bg-gradient-to-br from-blue-50 via-white to-gray-50 py-16 px-6 md:px-12">
+    <section className="relative bg-linear-to-br from-blue-50 via-white to-gray-50 py-16 px-6 md:px-12">
       {/* <div className="max-w-6xl mx-auto -mt-15"> */}
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
@@ -397,16 +467,31 @@ export default function BeritaSection() {
           </p>
         </div>
         {/* Carousel */}
-        <BeritaCarousel onSelectBerita={handleSelectBerita} />
+        {loading ? (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-0">
+            {Array.from({ length: 3 }).map((_, i) => (
+              <div key={i} className="animate-pulse h-80 bg-gray-200 rounded-xl" />
+            ))}
+          </div>
+        ) : error ? (
+          <div className="text-center text-red-600 font-medium">{error}</div>
+        ) : items.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-gray-500 text-lg mb-4">Belum ada berita yang dipublikasikan</p>
+            <p className="text-gray-400 text-sm">Silakan tunggu update terbaru dari kami</p>
+          </div>
+        ) : (
+          <BeritaCarousel items={items} onSelectBerita={handleSelectBerita} />
+        )}
         {/* View All News Button */}
         <div className="text-center -mt-8">
-          <button
-            onClick={handleViewAllBerita}
-            className="bg-white text-[#02a502] border-2 border-[#008000] px-4 py-2 rounded-xl text-lg font-semibold hover:bg-[#02a502] hover:text-white transition-all duration-300 flex items-center gap-2 mx-auto"
+          <Link
+            href="/berita-umum"
+            className="bg-white text-[#02a502] border-2 border-[#008000] px-4 py-2 rounded-xl text-lg font-semibold hover:bg-[#02a502] hover:text-white transition-all duration-300 flex items-center gap-2 mx-auto w-fit"
           >
             Lihat Semua Berita
             <ArrowRight className="w-5 h-5" />
-          </button>
+          </Link>
         </div>
       </div>
     </section>

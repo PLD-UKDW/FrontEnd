@@ -1,7 +1,8 @@
+import AccessibilityToolbar from "@/components/AccessibilityToolbar";
+import AppShell from "@/components/layouts/AppShell";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
-import AppShell from "@/components/layouts/AppShell";
 // import 'jsvectormap/dist/css/jsvectormap.css';
 
 
@@ -24,7 +25,28 @@ export default function RootLayout({
   return (
     <html lang="en" className="hydrated">
       <body className={`${fontMontserrat.className} antialiased`}>
-        <AppShell>{children}</AppShell>
+        <div className="a11y-contrast-root">
+          <AppShell>{children}</AppShell>
+        </div>
+        <AccessibilityToolbar />
+        <svg aria-hidden="true" width="0" height="0" style={{ position: "absolute" }}>
+          <defs>
+            <filter id="cb-rg">
+              <feColorMatrix type="matrix" values="
+                0.625 0.375 0     0 0
+                0.7   0.3   0     0 0
+                0     0.3   0.7   0 0
+                0     0     0     1 0" />
+            </filter>
+            <filter id="cb-by">
+              <feColorMatrix type="matrix" values="
+                0.95   0.05   0      0 0
+                0      0.4333 0.5667 0 0
+                0      0.475  0.525  0 0
+                0      0      0      1 0" />
+            </filter>
+          </defs>
+        </svg>
       </body>
     </html>
 

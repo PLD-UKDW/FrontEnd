@@ -1,9 +1,9 @@
 "use client";
-import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
-import { useEffect, useState } from 'react';
 import { Feature, Geometry } from 'geojson';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import { useEffect, useState } from 'react';
+import { GeoJSON, MapContainer, TileLayer } from 'react-leaflet';
 
 interface Student {
   id: number;
@@ -23,7 +23,15 @@ interface Student {
 }
 
 interface GeoJSONFeatureProperties {
-  NAMA_PROV: string;
+  // The upstream data may use different keys; make all optional
+  NAMA_PROV?: string;
+  Propinsi?: string;
+  PROPINSI?: string;
+  Provinsi?: string;
+  PROVINSI?: string;
+  provinsi?: string;
+  NAME_1?: string;
+  name?: string;
 }
 
 interface GeoJSONData {
@@ -35,6 +43,39 @@ interface MapChartProps {
   data: Student[];
 }
 
+function normalizeProvince(name: string): string {
+  const n = (name || '').trim().toLowerCase();
+  const map: Record<string, string> = {
+    // Aceh variations
+    'nanggroe aceh darussalam': 'aceh',
+    'aceh': 'aceh',
+    'ntb': 'nusa tenggara barat',
+    'nusa tenggara barat': 'nusa tenggara barat',
+    'ntt': 'nusa tenggara timur',
+    'nusa tenggara timur': 'nusa tenggara timur',
+    'di yogyakarta': 'di yogyakarta',
+    'd.i yogyakarta': 'di yogyakarta',
+    'daerah istimewa yogyakarta': 'di yogyakarta',
+    'dki jakarta': 'dki jakarta',
+    'jakarta': 'dki jakarta',
+    'bangka belitung': 'bangka belitung',
+    'kep. bangka belitung': 'bangka belitung',
+    'kepulauan bangka belitung': 'bangka belitung',
+    'kepulauan riau': 'riau',
+    'papua barat daya': 'papua barat',
+    'papua selatan': 'papua',
+    'papua tengah': 'papua',
+    'papua pegunungan': 'papua',
+  };
+  return map[n] ?? n;
+}
+
+function getProvinceName(feature: Feature<Geometry, GeoJSONFeatureProperties>): string {
+  const p = feature.properties || {};
+  const rawName = p.NAMA_PROV || p.Propinsi || p.PROPINSI || p.Provinsi || p.PROVINSI || p.provinsi || p.NAME_1 || p.name || '';
+  return typeof rawName === 'string' ? rawName : '';
+}
+  
 const MapChart: React.FC<MapChartProps> = ({ data }) => {
   const [geoJsonData, setGeoJsonData] = useState<GeoJSONData | null>(null);
 
@@ -54,28 +95,40 @@ const MapChart: React.FC<MapChartProps> = ({ data }) => {
   };
 
   const onEachFeature = (feature: Feature<Geometry, GeoJSONFeatureProperties>, layer: L.Layer) => {
-    const provinceName = feature.properties.NAMA_PROV;
-    const studentCount = data.filter(student => student.provinsi === provinceName).length;
+    const provinceName = getProvinceName(feature);
+    const provNorm = normalizeProvince(provinceName);
+    const studentCount = data.filter(student => normalizeProvince(student.provinsi) === provNorm).length;
+    const content = `<b>${provinceName || 'Tidak diketahui'}</b><br/>Jumlah Mahasiswa Disabilitas: ${studentCount}`;
 
     layer.on({
-      mouseover: (e) => {
-        const target = e.target;
+      mouseover: (e: L.LeafletMouseEvent) => {
+        const target = e.target as L.Path;
         target.setStyle({
           weight: 2.5,
           color: 'black',
           dashArray: '',
           fillOpacity: 0.7
         });
-        layer.bindPopup(`<b>${provinceName}</b><br/>Jumlah Mahasiswa: ${studentCount}`).openPopup();
+        // Bind and open popup at cursor position to ensure visibility
+        layer.bindPopup(content);
+        (layer as any).openPopup(e.latlng);
       },
-      mouseout: (e) => {
-        const target = e.target;
+      mouseout: (e: L.LeafletMouseEvent) => {
+        const target = e.target as L.Path;
         target.setStyle(style);
         layer.closePopup();
+      },
+      click: (e: L.LeafletMouseEvent) => {
+        // Fallback: open popup on click as well
+        layer.bindPopup(content);
+        (layer as any).openPopup(e.latlng);
       }
     });
 
-    layer.bindTooltip(provinceName, { permanent: true, direction: 'center', className: 'province-label' });
+    const label = provinceName || '';
+    if (label) {
+      layer.bindTooltip(label, { permanent: true, direction: 'center', className: 'province-label' });
+    }
   };
 
   return (
