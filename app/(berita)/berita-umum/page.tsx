@@ -34,7 +34,10 @@ function buildImages(content_images?: string) {
     .split(",")
     .map((s) => s.trim())
     .filter(Boolean)
-    .map((file) => `${API_BASE}/uploads/berita/${file}`);
+    .map((file) => {
+      const cleaned = file.replace(/^uploads[\\/]+berita[\\/]+/i, "");
+      return `${API_BASE}/uploads/berita/${encodeURIComponent(cleaned)}`;
+    });
 }
 
 // Ambil teks bersih untuk ringkasan kartu (hilangkan tag HTML)
@@ -121,6 +124,8 @@ function BeritaDetail({ berita, onBack, otherBerita }: { berita: Berita; onBack:
                       alt={`${berita.title} - ${idx + 1}`}
                       width={1200}
                       height={800}
+                      unoptimized
+                      loading="lazy"
                       className={imgClass}
                     />
                   </div>
@@ -133,6 +138,8 @@ function BeritaDetail({ berita, onBack, otherBerita }: { berita: Berita; onBack:
               alt={berita.title}
               width={1200}
               height={640}
+              unoptimized
+              loading="lazy"
               className="w-full h-96 object-cover mb-6 rounded-lg"
             />
           )}
@@ -182,6 +189,8 @@ function BeritaDetail({ berita, onBack, otherBerita }: { berita: Berita; onBack:
                     alt={item.title}
                     width={800}
                     height={480}
+                    unoptimized
+                    loading="lazy"
                     className="w-full h-48 object-cover"
                   />
                   <div className="p-6">
@@ -313,6 +322,8 @@ export default function BeritaUmumPage() {
                   alt={berita.title}
                   width={800}
                   height={480}
+                  unoptimized
+                  loading="lazy"
                   className="w-full h-48 object-cover"
                 />
                 <div className="p-6">

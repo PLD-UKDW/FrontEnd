@@ -175,9 +175,10 @@ function formatIDDate(input?: string | Date | null) {
 function buildImageUrl(content_images?: string) {
   const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
   if (!content_images) return "/berita/1.jpeg"; // fallback
-  const first = content_images.split(",").map(s => s.trim()).filter(Boolean)[0];
+  const firstRaw = content_images.split(",").map(s => s.trim()).filter(Boolean)[0];
+  const first = firstRaw ? firstRaw.replace(/^uploads[\\/]+berita[\\/]+/i, "") : "";
   if (!first) return "/berita/1.jpeg";
-  return `${API_BASE}/uploads/berita/${first}`;
+  return `${API_BASE}/uploads/berita/${encodeURIComponent(first)}`;
 }
 
 // Bangun semua URL gambar dari content_images
@@ -188,7 +189,10 @@ function buildImages(content_images?: string) {
     .split(",")
     .map((s) => s.trim())
     .filter(Boolean)
-    .map((file) => `${API_BASE}/uploads/berita/${file}`);
+    .map((file) => {
+      const cleaned = file.replace(/^uploads[\\/]+berita[\\/]+/i, "");
+      return `${API_BASE}/uploads/berita/${encodeURIComponent(cleaned)}`;
+    });
 }
 
 // Konversi respons API ke tipe Berita FrontEnd
@@ -255,6 +259,8 @@ function BeritaCarousel({
                 alt={berita.title}
                 width={800}
                 height={480}
+                unoptimized
+                loading="lazy"
                 className="w-full h-48 object-cover"
               />
               <div className="p-6 flex flex-col flex-1">
@@ -358,6 +364,8 @@ function BeritaDetail({ berita, onBack }: { berita: Berita; onBack: () => void }
                       alt={`${berita.title} - ${idx + 1}`}
                       width={1200}
                       height={720}
+                      unoptimized
+                      loading="lazy"
                       className={imgClass}
                     />
                   </div>
@@ -370,6 +378,8 @@ function BeritaDetail({ berita, onBack }: { berita: Berita; onBack: () => void }
               alt={berita.title}
               width={1200}
               height={640}
+              unoptimized
+              loading="lazy"
               className="w-full h-80 object-cover"
             />
           )}
