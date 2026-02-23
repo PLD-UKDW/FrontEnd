@@ -122,6 +122,10 @@ const MapChart: React.FC<MapChartProps> = ({ data }) => {
         // Fallback: open popup on click as well
         layer.bindPopup(content);
         (layer as any).openPopup(e.latlng);
+        try {
+          const msg = `Provinsi ${provinceName || 'Tidak diketahui'}. Jumlah Mahasiswa Disabilitas: ${studentCount}`;
+          window.dispatchEvent(new CustomEvent('tts-say', { detail: { text: msg } }));
+        } catch {}
       }
     });
 
@@ -147,6 +151,7 @@ const MapChart: React.FC<MapChartProps> = ({ data }) => {
           text-shadow: 1px 1px 2px rgba(255,255,255,0.7); /* Keep text shadow for contrast */
         }
       `}</style>
+      <div data-tts-ignore="true" style={{ height: '100%', width: '100%' }}>
       <MapContainer center={[-2.548926, 118.0148634]} zoom={5} style={{ height: '100%', width: '100%' }}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -160,6 +165,7 @@ const MapChart: React.FC<MapChartProps> = ({ data }) => {
           />
         )}
       </MapContainer>
+      </div>
     </>
   );
 };

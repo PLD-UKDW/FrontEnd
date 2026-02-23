@@ -2,7 +2,7 @@
 import { API_BASE } from '@/lib/api';
 import dynamic from 'next/dynamic';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Bar, BarChart, CartesianGrid, Cell, Legend, Line, LineChart, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { Bar, BarChart, CartesianGrid, Cell, LabelList, Legend, Line, LineChart, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 // import Map from './map';
 
 // disabilityData and statusData will be computed dynamically from backend data
@@ -475,9 +475,9 @@ export default function StatistikMahasiswaPage() {
               </div>
           </div>
           {/* Total Active Students Card */}
-          <div className="mb-12">
+              <div className="mb-12">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-white shadow-lg rounded-xl p-6 text-center border border-gray-200">
+              <div className="bg-white shadow-lg rounded-xl p-6 text-center border border-gray-200" data-tts-text={`Terdapat ${totalDisabledStudents} mahasiswa disabilitas`}>
                 <h2 className="text-xl font-bold text-gray-700 mb-2">
                 Total Mahasiswa Disabilitas
                 </h2>
@@ -485,7 +485,7 @@ export default function StatistikMahasiswaPage() {
                 {totalDisabledStudents}
                 </p>
               </div>
-              <div className="bg-white shadow-lg rounded-xl p-6 text-center border border-gray-200">
+              <div className="bg-white shadow-lg rounded-xl p-6 text-center border border-gray-200" data-tts-text={`Terdapat ${disabilityChartData.length} ragam disabilitas`}>
                 <h2 className="text-xl font-bold text-gray-700 mb-2">
                 Total Ragam Disabilitas
                 </h2>
@@ -493,7 +493,7 @@ export default function StatistikMahasiswaPage() {
                 {disabilityChartData.length}
                 </p>
               </div>
-              <div className="bg-white shadow-lg rounded-xl p-6 text-center border border-gray-200">
+              <div className="bg-white shadow-lg rounded-xl p-6 text-center border border-gray-200" data-tts-text={`Terdapat ${(statusChartData.find(s => s.name === 'Lulus')?.value || 0)} alumni disabilitas`}>
                 <h2 className="text-xl font-bold text-gray-700 mb-2">
                 Total Alumni Disabilitas
                 </h2>
@@ -519,7 +519,7 @@ export default function StatistikMahasiswaPage() {
               <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
                 Jumlah Mahasiswa Disabilitas per Angkatan
               </h2>
-              <div className="h-80 w-full">
+              <div className="h-96 w-full">
                 <ResponsiveContainer>
                   <LineChart
                     data={angkatanChartData}
@@ -540,17 +540,21 @@ export default function StatistikMahasiswaPage() {
               <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
                 Jumlah Mahasiswa Disabilitas per Fakultas
               </h2>
-              <div className="h-80 w-full">
+              <div className="h-96 w-full relative">
                 <ResponsiveContainer>
                   <BarChart
                     data={fakultasChartData}
-                    margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                    margin={{ top: 5, right: 30, left: 20, bottom: 70 }}
                   >
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="fakultas" />
+                    <XAxis
+                      dataKey="fakultas"
+                      interval={0}
+                      tick={{ angle: -35, textAnchor: 'end', fontSize: 12 } as any }
+                    />
                     <YAxis />
                     <Tooltip />
-                    <Legend />
+                    <Legend verticalAlign="bottom" align="right" wrapperStyle={{ position: 'absolute', bottom: 8, right: 8 }} />
                     <Bar dataKey="jumlah" fill="#82ca9d" />
                   </BarChart>
                 </ResponsiveContainer>
@@ -561,22 +565,22 @@ export default function StatistikMahasiswaPage() {
               <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
                 Ragam Disabilitas
               </h2>
-              <div className="h-80 w-full">
+              <div className="h-96 w-full">
                 <ResponsiveContainer>
-                  <PieChart>
+                  <PieChart margin={{ top: 16, right: 24, bottom: 16, left: 24 }}>
                     <Pie
                       data={disabilityChartData}
                       cx="50%"
-                      cy="50%"
-                      labelLine={false}
-                      outerRadius={120}
+                      cy="45%"
+                      labelLine={true}
+                      outerRadius="80%"
                       fill="#8884d8"
                       dataKey="value"
-                      label={({ name, percent }) => `${name} (${((percent || 0) * 100).toFixed(0)}%)`}
                     >
                       {disabilityChartData.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS_DISABILITY[index % COLORS_DISABILITY.length]} />
                       ))}
+                      <LabelList dataKey="name" position="outside" style={{ fontSize: 14 }} />
                     </Pie>
                     <Tooltip />
                     <Legend />
@@ -589,22 +593,22 @@ export default function StatistikMahasiswaPage() {
               <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
                 Status Mahasiswa
               </h2>
-              <div className="h-80 w-full">
+              <div className="h-96 w-full">
                 <ResponsiveContainer>
-                  <PieChart>
+                  <PieChart margin={{ top: 16, right: 24, bottom: 16, left: 24 }}>
                     <Pie
                       data={statusChartData}
                       cx="50%"
-                      cy="50%"
-                      labelLine={false}
-                      outerRadius={120}
+                      cy="45%"
+                      labelLine={true}
+                      outerRadius="80%"
                       fill="#8884d8"
                       dataKey="value"
-                      label={({ name, percent }) => `${name} (${((percent || 0) * 100).toFixed(0)}%)`}
                     >
                       {statusChartData.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS_STATUS[index % COLORS_STATUS.length]} />
                       ))}
+                      <LabelList dataKey="name" position="outside" style={{ fontSize: 14 }} />
                     </Pie>
                     <Tooltip />
                     <Legend />
@@ -617,22 +621,22 @@ export default function StatistikMahasiswaPage() {
               <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
                 Jenis Kelamin
               </h2>
-              <div className="h-80 w-full">
+              <div className="h-96 w-full">
                 <ResponsiveContainer>
-                  <PieChart>
+                  <PieChart margin={{ top: 16, right: 24, bottom: 16, left: 24 }}>
                     <Pie
                       data={jenisKelaminChartData}
                       cx="50%"
-                      cy="50%"
-                      labelLine={false}
-                      outerRadius={120}
+                      cy="45%"
+                      labelLine={true}
+                      outerRadius="80%"
                       fill="#8884d8"
                       dataKey="value"
-                      label={({ name, percent }) => `${name} (${((percent || 0) * 100).toFixed(0)}%)`}
                     >
                       {jenisKelaminChartData.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={['#8884d8', '#82ca9d'][index % 2]} />
                       ))}
+                      <LabelList dataKey="name" position="outside" style={{ fontSize: 14 }} />
                     </Pie>
                     <Tooltip />
                     <Legend />
@@ -645,22 +649,22 @@ export default function StatistikMahasiswaPage() {
               <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
                 Jenjang Studi
               </h2>
-              <div className="h-80 w-full">
+              <div className="h-96 w-full">
                 <ResponsiveContainer>
-                  <PieChart>
+                  <PieChart margin={{ top: 16, right: 24, bottom: 16, left: 24 }}>
                     <Pie
                       data={jenjangChartData}
                       cx="50%"
-                      cy="50%"
-                      labelLine={false}
-                      outerRadius={120}
+                      cy="45%"
+                      labelLine={true}
+                      outerRadius="80%"
                       fill="#8884d8"
                       dataKey="value"
-                      label={({ name, percent }) => `${name} (${((percent || 0) * 100).toFixed(0)}%)`}
                     >
                       {jenjangChartData.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={['#ffc658', '#ff7f50', '#a4de6c'][index % 3]} />
                       ))}
+                      <LabelList dataKey="name" position="outside" style={{ fontSize: 14 }} />
                     </Pie>
                     <Tooltip />
                     <Legend />
@@ -673,22 +677,22 @@ export default function StatistikMahasiswaPage() {
               <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
                 Jenis Asal Sekolah
               </h2>
-              <div className="h-80 w-full">
+              <div className="h-96 w-full">
                 <ResponsiveContainer>
-                  <PieChart>
+                  <PieChart margin={{ top: 16, right: 24, bottom: 16, left: 24 }}>
                     <Pie
                       data={asalSekolahChartData}
                       cx="50%"
-                      cy="50%"
-                      labelLine={false}
-                      outerRadius={120}
+                      cy="45%"
+                      labelLine={true}
+                      outerRadius="80%"
                       fill="#8884d8"
                       dataKey="value"
-                      label={({ name, percent }) => `${name} (${((percent || 0) * 100).toFixed(0)}%)`}
                     >
                       {asalSekolahChartData.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={['#0088FE', '#00C49F', '#FFBB28'][index % 3]} />
                       ))}
+                      <LabelList dataKey="name" position="outside" style={{ fontSize: 14 }} />
                     </Pie>
                     <Tooltip />
                     <Legend />
@@ -701,22 +705,22 @@ export default function StatistikMahasiswaPage() {
               <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
                 Distribusi IPK
               </h2>
-              <div className="h-80 w-full">
+              <div className="h-96 w-full">
                 <ResponsiveContainer>
-                  <PieChart>
+                  <PieChart margin={{ top: 16, right: 24, bottom: 16, left: 24 }}>
                     <Pie
                       data={ipkDistributionChartData}
                       cx="50%"
-                      cy="50%"
-                      labelLine={false}
-                      outerRadius={120}
+                      cy="45%"
+                      labelLine={true}
+                      outerRadius="80%"
                       fill="#8884d8"
                       dataKey="value"
-                      label={({ name, percent }) => `${name} (${((percent || 0) * 100).toFixed(0)}%)`}
                     >
                       {ipkDistributionChartData.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={['#0088FE', '#00C49F', '#FFBB28', '#FF8042'][index % 4]} />
                       ))}
+                      <LabelList dataKey="name" position="outside" style={{ fontSize: 14 }} />
                     </Pie>
                     <Tooltip />
                     <Legend />
