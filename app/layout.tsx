@@ -25,9 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="hydrated">
       <body className={`${fontMontserrat.className} antialiased`}>
-        <div className="a11y-contrast-root">
-          <AppShell>{children}</AppShell>
-        </div>
+        <AppShell>{children}</AppShell>
         <AccessibilityToolbar />
         <svg aria-hidden="true" width="0" height="0" style={{ position: "absolute" }}>
           <defs>

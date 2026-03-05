@@ -264,7 +264,7 @@ export function NavigationMenuDemo() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-[#02a502] shadow z-50 font-sans">
+    <nav className="site-nav fixed top-0 w-full bg-[#02a502] shadow z-50 font-sans">
       <div className="flex items-center justify-between px-9 py-4">
         {/* Kiri - Logo + Nama Kampus */}
         <Link href="/" className="flex items-center gap-3">

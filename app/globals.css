@@ -51,9 +51,103 @@ html[data-a11y-contrast="high"] .a11y-toolbar {
   filter: none !important;
 }
 
-html[data-a11y-fontscale="1"] { font-size: 100%; }
-html[data-a11y-fontscale="1.125"] { font-size: 112.5%; }
-html[data-a11y-fontscale="1.25"] { font-size: 125%; }
+html[data-a11y-contrast="high"] .bg-white,
+html[data-a11y-contrast="high"] [class*="bg-white"] {
+  border: 2px solid #000 !important;
+}
+
+html[data-a11y-contrast="high"] select,
+html[data-a11y-contrast="high"] input,
+html[data-a11y-contrast="high"] textarea,
+html[data-a11y-contrast="high"] button,
+html[data-a11y-contrast="high"] .border,
+html[data-a11y-contrast="high"] [class*="border-"] {
+  border-color: #000 !important;
+}
+
+html[data-a11y-contrast="high"] hr,
+html[data-a11y-contrast="high"] .divide-y > :not([hidden]) ~ :not([hidden]),
+html[data-a11y-contrast="high"] .divide-x > :not([hidden]) ~ :not([hidden]) {
+  border-color: #000 !important;
+}
+
+/* High contrast: all text and numbers black solid */
+html[data-a11y-contrast="high"] {
+  color: #000 !important;
+}
+html[data-a11y-contrast="high"] p,
+html[data-a11y-contrast="high"] h1,
+html[data-a11y-contrast="high"] h2,
+html[data-a11y-contrast="high"] h3,
+html[data-a11y-contrast="high"] h4,
+html[data-a11y-contrast="high"] h5,
+html[data-a11y-contrast="high"] h6,
+html[data-a11y-contrast="high"] span,
+html[data-a11y-contrast="high"] div,
+html[data-a11y-contrast="high"] label,
+html[data-a11y-contrast="high"] button,
+html[data-a11y-contrast="high"] li,
+html[data-a11y-contrast="high"] td,
+html[data-a11y-contrast="high"] th {
+  color: #000 !important;
+}
+
+/* Pie chart stroke for high contrast */
+html[data-a11y-contrast="high"] .recharts-wrapper circle,
+html[data-a11y-contrast="high"] .recharts-pie-sector,
+html[data-a11y-contrast="high"] .recharts-pie-sector path,
+html[data-a11y-contrast="high"] .recharts-pie .recharts-pie-sector,
+html[data-a11y-contrast="high"] g.recharts-pie-sector path {
+  stroke: #000 !important;
+  stroke-width: 2 !important;
+}
+html[data-a11y-contrast="high"] .recharts-pie-sector {
+  filter: none !important;
+}
+
+/* All chart legends and labels black in high contrast */
+html[data-a11y-contrast="high"] .recharts-legend-item-text,
+html[data-a11y-contrast="high"] .recharts-label,
+html[data-a11y-contrast="high"] .recharts-text,
+html[data-a11y-contrast="high"] .recharts-cartesian-axis-tick-value,
+html[data-a11y-contrast="high"] .recharts-tooltip-label,
+html[data-a11y-contrast="high"] text {
+  fill: #000 !important;
+  color: #000 !important;
+}
+
+/* Map tiles and provinces clarity */
+html[data-a11y-contrast="high"] .leaflet-tile-pane,
+html[data-a11y-contrast="high"] .leaflet-marker-pane,
+html[data-a11y-contrast="high"] .leaflet-object {
+  filter: contrast(1.5) brightness(1.1) !important;
+}
+html[data-a11y-contrast="high"] svg [fill="#008000"],
+html[data-a11y-contrast="high"] svg [fill="#ffd400"] {
+  stroke: #000 !important;
+  stroke-width: 1.5 !important;
+}
+
+/* High contrast bar chart stroke */
+html[data-a11y-contrast="high"] .recharts-bar-rectangle {
+  stroke: #000 !important;
+  stroke-width: 1.5 !important;
+}
+
+/* Keep nav readable in high-contrast mode */
+html[data-a11y-contrast="high"] .site-nav {
+  background: #000 !important;
+  color: #fff !important;
+  border-bottom: 3px solid #000 !important;
+}
+html[data-a11y-contrast="high"] .site-nav * {
+  color: #fff !important;
+}
+
+/* Zoom accessibility feature - keep toolbar at normal size */
+html[data-a11y-fontscale="1.25"] .a11y-toolbar { zoom: 80%; }
+html[data-a11y-fontscale="1.5"] .a11y-toolbar { zoom: 66.67%; }
+html[data-a11y-fontscale="2"] .a11y-toolbar { zoom: 50%; }
 
 @media (prefers-reduced-motion: no-preference) {
   html[data-a11y-motion="reduce"] *,
@@ -126,6 +220,11 @@ html[data-a11y-colorblind="rg"] .a11y-contrast-root {
 html[data-a11y-colorblind="by"] .a11y-contrast-root {
   /* Tritanopia approximation via SVG color matrix defined in layout */
   filter: url(#cb-by) !important;
+}
+
+/* Ensure nav doesn't wash out under colorblind filters */
+html[data-a11y-colorblind] .site-nav {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.4) !important;
 }
 
 /* Ensure the accessibility toolbar isn't filtered or repositioned */
