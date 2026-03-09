@@ -1309,7 +1309,7 @@ export default function StatistikMahasiswaPage() {
                 <h3 className="text-xl font-bold text-gray-700 mb-2">
                 Total Alumni Disabilitas
                 </h3>
-                <p className="text-5xl font-extrabold text-[#ffc658]">
+                <p className="text-5xl font-extrabold text-[#a16207]">
                 {statusChartData.find(s => s.name === 'Lulus')?.value || 0}
                 </p>
               </div>
@@ -1388,7 +1388,7 @@ export default function StatistikMahasiswaPage() {
                 <button
                   onClick={() => setAngkatanPage(Math.max(0, angkatanPage - 1))}
                   disabled={angkatanPage === 0}
-                  className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                  className="px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-800 disabled:bg-gray-300 disabled:text-gray-700 disabled:cursor-not-allowed"
                 >
                   ← Sebelumnya
                 </button>
@@ -1398,7 +1398,7 @@ export default function StatistikMahasiswaPage() {
                 <button
                   onClick={() => setAngkatanPage(Math.min(totalPages - 1, angkatanPage + 1))}
                   disabled={angkatanPage === totalPages - 1}
-                  className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                  className="px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-800 disabled:bg-gray-300 disabled:text-gray-700 disabled:cursor-not-allowed"
                 >
                   Selanjutnya →
                 </button>
